@@ -15,10 +15,13 @@ Jede Antwort im Rechner gibt Punkte (`value` in `index.html`), daraus wählt `pa
 
 ## Einrichten
 
-1. In `assets/config.js` deine E-Mail-Adresse bei `email` eintragen.
-2. `versand: "formsubmit"` schickt Anfragen direkt über [formsubmit.co](https://formsubmit.co) an dich – beim ersten Absenden kommt eine Bestätigungs-Mail, die du einmal bestätigen musst.
-   Mit `versand: "mailto"` öffnet sich stattdessen das E-Mail-Programm des Kunden mit fertig ausgefüllter Anfrage.
-3. `impressum.html` und `datenschutz.html` mit deinen Angaben füllen.
-4. Alle Dateien auf deinen Webspace hochladen (oder GitHub Pages / Netlify nutzen) – kein Server oder Build nötig.
+- Anfragen gehen über `send.php` (PHP `mail()` auf dem STRATO-Webspace) an `info@grkn.net`. Empfänger und Absender stehen oben in `send.php`.
+  Klappt der Versand nicht, bekommt der Kunde einen Link, der sein E-Mail-Programm mit fertiger Anfrage öffnet.
+- Mit `versand: "mailto"` in `assets/config.js` wird immer direkt das E-Mail-Programm des Kunden geöffnet.
+- Design im Stil von Gerken Medien (Schwarz/Weiß, Systemschriften, keine externen Ressourcen).
 
-Lokal ansehen: `index.html` einfach im Browser öffnen.
+## Veröffentlichen
+
+Jeder Push auf `main` lädt die Seite per GitHub Actions (`.github/workflows/deploy.yml`) per SFTP nach `/wd/` auf STRATO.
+
+Lokal ansehen: `php -S localhost:8000` im Projektordner und http://localhost:8000 öffnen (oder `index.html` direkt im Browser – dann ohne Mailversand).

@@ -57,30 +57,22 @@
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
   var euro = function (n) { return n.toLocaleString("de-DE"); };
 
-  // ---------- Grunddaten ----------
-  $$(".js-firma").forEach(function (el) { el.textContent = CONFIG.firma || el.textContent; });
   $("#year").textContent = new Date().getFullYear();
-  var footerMail = $("#footerMail");
-  if (CONFIG.email && CONFIG.email !== "deine@email.de") {
-    footerMail.textContent = CONFIG.email;
-    footerMail.href = "mailto:" + CONFIG.email;
-  } else {
-    footerMail.parentNode.remove();
-  }
 
   // ---------- Paketkarten ----------
   var packagesEl = $("#packages");
-  PACKAGES.forEach(function (p) {
+  PACKAGES.forEach(function (p, i) {
     var card = document.createElement("article");
     card.className = "pkg" + (p.popular ? " pkg-popular" : "");
     card.innerHTML =
-      (p.popular ? '<span class="pkg-badge">Beliebt bei Unternehmen</span>' : "") +
+      (p.popular ? '<span class="pkg-badge">Beliebt</span>' : "") +
+      '<span class="no">0' + (i + 1) + "</span>" +
       "<h3>" + p.name + "</h3>" +
       '<p class="pkg-tag">' + p.tagline + "</p>" +
       '<div class="pkg-price">' + euro(p.price) + " <span>€</span></div>" +
       '<p class="pkg-once">einmalig, Festpreis</p>' +
-      "<ul>" + p.features.map(function (f) { return "<li>" + f + "</li>"; }).join("") + "</ul>" +
-      '<a href="#rechner" class="btn ' + (p.popular ? "" : "btn-outline") + ' btn-full" data-pick="' + p.id + '">' + p.name + " anfragen</a>";
+      '<ul class="ticks">' + p.features.map(function (f) { return "<li>" + f + "</li>"; }).join("") + "</ul>" +
+      '<a href="#rechner" class="btn btn-solid btn-full" data-pick="' + p.id + '">' + p.name + " anfragen</a>";
     packagesEl.appendChild(card);
   });
 
@@ -256,7 +248,7 @@
     var data = {};
     fd.forEach(function (v, k) { data[k] = String(v).trim(); });
 
-    if (CONFIG.versand !== "formsubmit" || !CONFIG.email || CONFIG.email === "deine@email.de") {
+    if (CONFIG.versand !== "php") {
       openMailto(data);
       done();
       return;
@@ -265,30 +257,24 @@
     sendBtn.disabled = true;
     sendBtn.textContent = "Wird gesendet …";
 
-    fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONFIG.email), {
+    fetch("send.php", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
-        _subject: "Website-Anfrage: " + chosen.name + " (" + euro(chosen.price) + " €) von " + data.name,
-        _replyto: data.email,
-        _template: "box",
-        _captcha: "false",
-        Paket: chosen.name + " – " + euro(chosen.price) + " €",
-        Name: data.name,
-        "E-Mail": data.email,
-        Telefon: data.telefon || "–",
-        "Firma/Projekt": data.firma || "–",
-        Antworten: answersSummary(),
-        Nachricht: data.nachricht || "–",
+        paket: chosen.name + " (" + euro(chosen.price) + " €)",
+        name: data.name,
+        email: data.email,
+        telefon: data.telefon,
+        firma: data.firma,
+        nachricht: data.nachricht,
+        antworten: calcForm.hidden && !$("input:checked", calcForm) ? "(Paket direkt gewählt)" : answersSummary(),
+        website: data.website,
       }),
     })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (json) {
-        if (json && (json.success === false || json.success === "false")) throw new Error(json.message);
-        done();
-      })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (json) { if (!r.ok || !json.success) throw new Error(r.status); }); })
+      .then(done)
       .catch(function () {
-        formMsg.innerHTML = "Das hat leider nicht geklappt. <a href=\"#\" id=\"mailFallback\">Per E-Mail senden</a>";
+        formMsg.innerHTML = 'Das hat leider nicht geklappt. <a href="#" id="mailFallback">Per E-Mail senden</a> oder anrufen: <a href="tel:+4915124174401">0151 241 744 01</a>';
         formMsg.classList.add("error");
         $("#mailFallback").addEventListener("click", function (ev) { ev.preventDefault(); openMailto(data); done(); });
       })
