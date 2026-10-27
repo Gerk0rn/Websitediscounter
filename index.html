@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Discounter – Deine Website zum Festpreis</title>
+  <meta name="description" content="Professionelle Websites zum Festpreis: ab 500 €. In 1 Minute den Preis berechnen und direkt anfragen.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#" class="logo"><span class="logo-mark">W</span><span class="js-firma">Website Discounter</span></a>
+      <nav class="nav">
+        <a href="#pakete">Pakete</a>
+        <a href="#so-gehts">So geht's</a>
+        <a href="#rechner" class="btn btn-small">Preis berechnen</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <span class="pill">Festpreis · Keine versteckten Kosten</span>
+          <h1>Deine neue Website.<br><span class="grad">Fair. Schnell. <span class="nowrap">Ab 500 €.</span></span></h1>
+          <p class="lead">Beantworte 3 kurze Fragen und sieh sofort, was deine Website kostet. Gefällt dir das Angebot, schickst du die Anfrage mit einem Klick ab.</p>
+          <div class="hero-cta">
+            <a href="#rechner" class="btn btn-big">Jetzt Preis berechnen →</a>
+            <span class="hint">dauert unter 1 Minute</span>
+          </div>
+          <ul class="trust">
+            <li>✓ Für Handy & Desktop optimiert</li>
+            <li>✓ Persönlicher Ansprechpartner</li>
+            <li>✓ Festpreis statt Stundenzettel</li>
+          </ul>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i></div>
+            <div class="browser-body">
+              <div class="sk sk-hero"></div>
+              <div class="sk-row"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+              <div class="sk sk-line"></div>
+              <div class="sk sk-line short"></div>
+            </div>
+          </div>
+          <div class="float-badge">ab <strong>500 €</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pakete -->
+    <section id="pakete" class="section">
+      <div class="container">
+        <h2 class="section-title">Drei Pakete. Ein fairer Preis.</h2>
+        <p class="section-sub">Nicht sicher, welches passt? Der <a href="#rechner">Preisrechner</a> sagt es dir.</p>
+        <div class="packages" id="packages"></div>
+      </div>
+    </section>
+
+    <!-- So geht's -->
+    <section id="so-gehts" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">So einfach geht's</h2>
+        <div class="steps">
+          <div class="step"><span class="step-num">1</span><h3>Fragen beantworten</h3><p>3 Klicks – kein Fachchinesisch.</p></div>
+          <div class="step"><span class="step-num">2</span><h3>Preis sehen</h3><p>Du siehst sofort deinen Festpreis.</p></div>
+          <div class="step"><span class="step-num">3</span><h3>Anfrage senden</h3><p>Ich melde mich innerhalb von 24 Stunden.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rechner -->
+    <section id="rechner" class="section">
+      <div class="container">
+        <div class="calc">
+          <div class="calc-head">
+            <h2>Was kostet meine Website?</h2>
+            <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+            <span class="progress-label" id="progressLabel">Frage 1 von 3</span>
+          </div>
+
+          <form id="calcForm" novalidate>
+            <!-- Frage 1 -->
+            <fieldset class="q active" data-step="1">
+              <legend>Wofür brauchst du die Website?</legend>
+              <div class="options">
+                <label class="opt"><input type="radio" name="zweck" value="0" data-label="Einfach online sichtbar sein"><span class="opt-card"><span class="opt-icon">👋</span><strong>Einfach online sichtbar sein</strong><small>Visitenkarte, Verein, Selbstständig</small></span></label>
+                <label class="opt"><input type="radio" name="zweck" value="3" data-label="Mein Unternehmen präsentieren"><span class="opt-card"><span class="opt-icon">🏢</span><strong>Mein Unternehmen präsentieren</strong><small>Leistungen, Team, Kunden gewinnen</small></span></label>
+                <label class="opt"><input type="radio" name="zweck" value="6" data-label="Großer Auftritt mit vielen Inhalten"><span class="opt-card"><span class="opt-icon">🚀</span><strong>Großer Auftritt mit vielen Inhalten</strong><small>Viele Bereiche, Produkte, Extras</small></span></label>
+              </div>
+            </fieldset>
+
+            <!-- Frage 2 -->
+            <fieldset class="q" data-step="2">
+              <legend>Wie viele Unterseiten ungefähr?</legend>
+              <div class="options">
+                <label class="opt"><input type="radio" name="seiten" value="0" data-label="1 – 3 Seiten"><span class="opt-card"><span class="opt-icon">📄</span><strong>1 – 3 Seiten</strong><small>z. B. Start, Über mich, Kontakt</small></span></label>
+                <label class="opt"><input type="radio" name="seiten" value="2" data-label="4 – 8 Seiten"><span class="opt-card"><span class="opt-icon">📑</span><strong>4 – 8 Seiten</strong><small>z. B. mehrere Leistungen, Team, Referenzen</small></span></label>
+                <label class="opt"><input type="radio" name="seiten" value="4" data-label="Mehr als 8 Seiten"><span class="opt-card"><span class="opt-icon">📚</span><strong>Mehr als 8 Seiten</strong><small>Umfangreicher Auftritt</small></span></label>
+              </div>
+            </fieldset>
+
+            <!-- Frage 3 -->
+            <fieldset class="q" data-step="3">
+              <legend>Was soll die Website zusätzlich können? <small>(optional, mehrere möglich)</small></legend>
+              <div class="options options-grid">
+                <label class="opt"><input type="checkbox" name="extras" value="1" data-label="Blog / News"><span class="opt-card small"><span class="opt-icon">📰</span><strong>Blog / News</strong></span></label>
+                <label class="opt"><input type="checkbox" name="extras" value="1" data-label="Bildergalerie"><span class="opt-card small"><span class="opt-icon">🖼️</span><strong>Bildergalerie</strong></span></label>
+                <label class="opt"><input type="checkbox" name="extras" value="2" data-label="Online-Terminbuchung"><span class="opt-card small"><span class="opt-icon">📅</span><strong>Terminbuchung</strong></span></label>
+                <label class="opt"><input type="checkbox" name="extras" value="2" data-label="Mehrsprachig"><span class="opt-card small"><span class="opt-icon">🌍</span><strong>Mehrsprachig</strong></span></label>
+                <label class="opt"><input type="checkbox" name="extras" value="3" data-label="Produktkatalog / kleiner Shop"><span class="opt-card small"><span class="opt-icon">🛒</span><strong>Produkte / Shop</strong></span></label>
+                <label class="opt"><input type="checkbox" name="extras" value="1" data-label="Texte & Bilder werden benötigt"><span class="opt-card small"><span class="opt-icon">✍️</span><strong>Hilfe bei Texten</strong></span></label>
+              </div>
+            </fieldset>
+
+            <div class="calc-nav">
+              <button type="button" class="btn btn-ghost" id="backBtn" hidden>← Zurück</button>
+              <button type="button" class="btn" id="nextBtn" disabled>Weiter →</button>
+            </div>
+          </form>
+
+          <!-- Ergebnis -->
+          <div class="result" id="result" hidden>
+            <span class="pill">Deine Empfehlung</span>
+            <h3 class="result-name" id="resultName">Business</h3>
+            <div class="result-price"><span id="resultPrice">0</span> €</div>
+            <p class="result-note">einmaliger Festpreis · inkl. MwSt.-Hinweis im Angebot</p>
+            <ul class="result-features" id="resultFeatures"></ul>
+            <div class="switch">
+              <span>Lieber ein anderes Paket?</span>
+              <div class="switch-btns" id="switchBtns"></div>
+            </div>
+
+            <form id="leadForm" class="lead-form" novalidate>
+              <h4>Unverbindlich anfragen</h4>
+              <div class="fields">
+                <label>Name*<input type="text" name="name" required autocomplete="name"></label>
+                <label>E-Mail*<input type="email" name="email" required autocomplete="email"></label>
+                <label>Telefon <small>(optional)</small><input type="tel" name="telefon" autocomplete="tel"></label>
+                <label>Firma / Projekt <small>(optional)</small><input type="text" name="firma" autocomplete="organization"></label>
+                <label class="full">Noch etwas, das ich wissen sollte? <small>(optional)</small><textarea name="nachricht" rows="3" placeholder="z. B. bestehende Website, Wunschtermin, Ideen …"></textarea></label>
+              </div>
+              <label class="consent"><input type="checkbox" name="consent" required> Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden.</label>
+              <button type="submit" class="btn btn-big btn-full" id="sendBtn">Anfrage kostenlos senden</button>
+              <p class="form-msg" id="formMsg" role="status"></p>
+              <button type="button" class="link-btn" id="restartBtn">↺ Rechner neu starten</button>
+            </form>
+
+            <div class="success" id="success" hidden>
+              <div class="success-icon">🎉</div>
+              <h4>Vielen Dank!</h4>
+              <p>Deine Anfrage ist angekommen. Ich melde mich innerhalb von 24 Stunden bei dir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-alt">
+      <div class="container narrow">
+        <h2 class="section-title">Häufige Fragen</h2>
+        <details><summary>Kommen noch weitere Kosten dazu?</summary><p>Der Preis ist ein Festpreis für die Erstellung. Domain und Hosting kosten je nach Anbieter meist nur wenige Euro im Monat – dazu berate ich dich gerne.</p></details>
+        <details><summary>Wie lange dauert es, bis meine Website online ist?</summary><p>Eine Start-Website ist oft schon nach 1–2 Wochen online, größere Projekte dauern meist 3–5 Wochen.</p></details>
+        <details><summary>Ist die Anfrage verbindlich?</summary><p>Nein. Du bekommst zuerst ein persönliches Angebot und entscheidest dann in Ruhe.</p></details>
+        <details><summary>Kann ich später etwas erweitern?</summary><p>Klar. Deine Website wächst mit – neue Seiten oder Funktionen können jederzeit ergänzt werden.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> <span class="js-firma">Website Discounter</span></span>
+      <span><a href="#" id="footerMail"></a></span>
+      <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
