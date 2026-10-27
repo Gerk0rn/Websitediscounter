@@ -38,10 +38,21 @@ header .btn{padding:10px 18px;font-size:.92rem}
 .hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(2.6rem,7vw,5.2rem)}
 .hero p{font-size:1.2rem;color:#ccc;max-width:30em;margin-bottom:32px}
-.hero .photo{position:relative;border:2px solid #fff}
-.hero .photo img{filter:grayscale(1)}
-.hero .photo div{position:absolute;left:0;bottom:20px;background:#fff;color:#000;padding:10px 16px;line-height:1.3}
-.hero .photo small{display:block;font-size:.8rem}
+.art{margin:0;position:relative}
+.art svg{width:100%;height:auto;display:block;overflow:visible}
+.art .b{opacity:0;animation:build 8s infinite}
+.art .d1{animation-delay:.2s}.art .d2{animation-delay:.6s}.art .d3{animation-delay:1s}.art .d4{animation-delay:1.4s}
+.art .d5{animation-delay:1.8s}.art .d6{animation-delay:2.2s}.art .d7{animation-delay:2.6s}.art .d8{animation-delay:3s}
+@keyframes build{0%{opacity:0;transform:translateY(8px)}6%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+.art .phone{animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.art .spin{transform-origin:360px 70px;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.art .cursor{animation:cursor 8s infinite;transform-box:fill-box;transform-origin:top left}
+@keyframes cursor{0%,30%{transform:translate(120px,140px);opacity:0}38%{opacity:1}50%,58%{transform:translate(0,0)}54%{transform:translate(0,0) scale(.85)}70%,100%{transform:translate(0,0);opacity:0}}
+.art .click{transform-origin:118px 236px;animation:click 8s infinite;opacity:0}
+@keyframes click{0%,52%{opacity:0;transform:scale(.4)}55%{opacity:1}64%,100%{opacity:0;transform:scale(1.8)}}
+@media(prefers-reduced-motion:reduce){.art *{animation:none!important;opacity:1!important}.art .cursor,.art .click{display:none}}
 .prices{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap}
 .prices div{border-top:2px solid #fff;padding-top:8px;min-width:120px}
 .prices small{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#aaa}
@@ -128,7 +139,7 @@ footer nav a:hover{text-decoration:underline}
 
 @media(max-width:900px){
   .hero .wrap{grid-template-columns:1fr}
-  .hero .photo{max-width:340px}
+  .art{max-width:440px}
   .packs{grid-template-columns:1fr}
   .pack+.pack{border-left:0;border-top:2px solid #000}
   .steps,.facts{grid-template-columns:1fr}
@@ -169,9 +180,44 @@ footer nav a:hover{text-decoration:underline}
           <div><small>Premium</small><strong>1.650 €</strong></div>
         </div>
       </div>
-      <figure class="photo" style="margin:0">
-        <img src="img/dennis-gerken.jpg" alt="Dennis Gerken" width="1024" height="1024">
-        <div><strong>Dennis Gerken</strong><small>Dein Ansprechpartner</small></div>
+      <figure class="art" aria-hidden="true">
+        <svg viewBox="0 0 460 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Browserfenster -->
+          <rect x="10" y="40" width="360" height="270" rx="10"/>
+          <path d="M10 76h360"/>
+          <circle cx="32" cy="58" r="5"/><circle cx="50" cy="58" r="5"/><circle cx="68" cy="58" r="5"/>
+          <rect x="96" y="49" width="190" height="18" rx="9" stroke-width="2"/>
+          <text x="191" y="62" fill="#fff" stroke="none" font-size="11" font-family="Arial,sans-serif" text-anchor="middle">deine-website.de</text>
+          <!-- Inhalt baut sich auf -->
+          <g class="b d1"><rect x="34" y="94" width="54" height="10" rx="2" fill="#fff" stroke="none"/><path d="M250 99h20M282 99h20M314 99h30" stroke-width="2.5"/></g>
+          <g class="b d2"><rect x="34" y="126" width="150" height="16" rx="2" fill="#fff" stroke="none"/><rect x="34" y="148" width="110" height="16" rx="2" fill="#fff" stroke="none"/></g>
+          <g class="b d3"><path d="M34 180h140M34 192h110" stroke-width="2" stroke="#888"/></g>
+          <g class="b d4"><rect x="34" y="210" width="84" height="26" fill="#fff" stroke="none"/><text x="76" y="227" fill="#000" stroke="none" font-size="11" font-weight="700" font-family="Arial,sans-serif" text-anchor="middle">Anfragen</text></g>
+          <g class="b d5"><rect x="204" y="122" width="142" height="114"/><path d="M204 222l38-42 26 28 18-18 60 56" stroke-width="2.5"/><circle cx="318" cy="150" r="10"/></g>
+          <g class="b d6"><rect x="34" y="254" width="96" height="36" stroke-width="2"/></g>
+          <g class="b d7"><rect x="142" y="254" width="96" height="36" stroke-width="2"/></g>
+          <g class="b d8"><rect x="250" y="254" width="96" height="36" stroke-width="2"/></g>
+          <!-- Klick auf den Button -->
+          <circle class="click" cx="118" cy="236" r="14" stroke-width="2"/>
+          <g class="cursor"><path d="M112 228l0 26 7-7 6 12 5-2-6-12 10 0z" fill="#000" stroke="#fff" stroke-width="2"/></g>
+          <!-- Handy -->
+          <g class="phone">
+            <rect x="330" y="170" width="112" height="210" rx="16" fill="#000"/>
+            <path d="M370 184h32" stroke-width="2.5"/>
+            <rect x="346" y="202" width="40" height="7" rx="2" fill="#fff" stroke="none"/>
+            <rect x="346" y="222" width="80" height="11" rx="2" fill="#fff" stroke="none"/>
+            <rect x="346" y="238" width="62" height="11" rx="2" fill="#fff" stroke="none"/>
+            <path d="M346 262h80M346 272h64" stroke="#888" stroke-width="2"/>
+            <rect x="346" y="288" width="80" height="50" stroke-width="2"/>
+            <rect x="346" y="348" width="50" height="16" fill="#fff" stroke="none"/>
+          </g>
+          <!-- Festpreis-Stempel -->
+          <circle cx="360" cy="70" r="58" fill="#fff" stroke="none"/>
+          <defs><path id="ring" d="M360 70m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+          <g class="spin"><text fill="#000" stroke="none" font-size="11" font-weight="700" font-family="Arial,sans-serif"><textPath href="#ring" textLength="272" lengthAdjust="spacing">FESTPREIS • FESTPREIS • FESTPREIS • </textPath></text></g>
+          <text x="360" y="66" fill="#000" stroke="none" font-size="11" font-family="Arial,sans-serif" text-anchor="middle">ab</text>
+          <text x="360" y="88" fill="#000" stroke="none" font-size="24" font-weight="800" font-family="Arial,sans-serif" text-anchor="middle">500 €</text>
+        </svg>
       </figure>
     </div>
   </section>
