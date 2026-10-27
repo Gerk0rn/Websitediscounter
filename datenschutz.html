@@ -6,26 +6,38 @@
 <title>Datenschutzerklärung – Website Discounter | Gerken Medien</title>
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/styles.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;color:#000;background:#fff;line-height:1.6}
+a{color:inherit}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+header{border-bottom:2px solid #000}
+header .wrap{max-width:1120px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:96px;display:block}
+.brand span{border-left:2px solid #000;padding-left:12px;font-size:.72rem;font-weight:800;letter-spacing:.12em;line-height:1.2;text-transform:uppercase}
+.back{font-weight:700;text-decoration:none}
+main{padding:60px 0 80px}
+h1{font-size:clamp(2rem,8vw,3.6rem);overflow-wrap:break-word;hyphens:auto;letter-spacing:-.03em;line-height:1.05;margin:0 0 .8em}
+h2{font-size:1.25rem;margin:2em 0 .5em}
+address{font-style:normal}
+.stand{margin-top:3em;color:#555;font-size:.9rem}
+footer{background:#000;color:#aaa;padding:24px 0;font-size:.9rem}
+footer .wrap{max-width:1120px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer img{width:100px;display:block}
+footer nav a{color:#fff;text-decoration:none;margin-left:20px}
+</style>
 </head>
 <body>
-<a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Website Discounter – Startseite">
-      <img src="assets/img/logo.svg" alt="Gerken Medien" width="110" height="40">
-      <span class="brand-sub">Website<br>Discounter</span>
-    </a>
-    <nav class="nav" aria-label="Hauptnavigation">
-      <a href="index.html#pakete">Pakete</a>
-      <a href="index.html#ueber-mich">Über mich</a>
-      <a class="btn-nav" href="index.html#rechner">Preis berechnen</a>
-    </nav>
-  </div>
+<header>
+<div class="wrap">
+<a class="brand" href="./"><img src="img/logo.svg" alt="Gerken Medien" width="96" height="35"><span>Website<br>Discounter</span></a>
+<a class="back" href="./">← Zur Startseite</a>
+</div>
 </header>
 
-<main id="inhalt" class="legal">
+<main>
 <div class="wrap">
 <h1>Datenschutzerklärung</h1>
 
@@ -92,17 +104,11 @@ E-Mail: <a href="mailto:info@grkn.net">info@grkn.net</a>
 </div>
 </main>
 
-<footer class="site-footer dark">
-  <div class="wrap">
-    <div class="footer-brand">
-      <img src="assets/img/logo-weiss.svg" alt="Gerken Medien" width="120" height="44">
-      <span>© 2026 Gerken Medien · Website Discounter</span>
-    </div>
-    <nav aria-label="Rechtliches">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
-  </div>
+<footer>
+<div class="wrap">
+<div style="display:flex;align-items:center;gap:14px"><img src="img/logo-weiss.svg" alt="Gerken Medien" width="100" height="37"><span>© 2026 Gerken Medien</span></div>
+<nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+</div>
 </footer>
 </body>
 </html>
