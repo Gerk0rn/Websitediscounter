@@ -61,6 +61,12 @@ function get_prices() {
     return $prices;
 }
 
+function get_pixel_id() {
+    $settings = data_read('settings') ?? [];
+    $id = (string) ($settings['pixel'] ?? '');
+    return preg_match('/^\d{5,20}$/', $id) ? $id : '';
+}
+
 function get_user() {
     return data_read('user');
 }

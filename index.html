@@ -617,7 +617,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
 <footer>
   <div class="wrap">
     <div style="display:flex;align-items:center;gap:14px"><img src="img/logo-weiss.svg" alt="Gerken Medien" width="100" height="37"><span>© 2026 Gerken Medien</span></div>
-    <nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+    <nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="#" data-consent-open>Cookie-Einstellungen</a></nav>
   </div>
 </footer>
 
@@ -751,7 +751,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         firma: d.firma, nachricht: d.nachricht, antworten: answers(), website: d.website })
     })
       .then(function (r) { return r.json(); })
-      .then(function (j) { if (!j.success) throw 0; f.hidden = true; $("done").hidden = false; })
+      .then(function (j) { if (!j.success) throw 0; f.hidden = true; $("done").hidden = false; if (window.wdTrack) wdTrack("Lead"); })
       .catch(function () {
         msg.innerHTML = 'Das hat leider nicht geklappt. <a href="#" id="fb">Per E-Mail senden</a> oder anrufen: <a href="tel:+4915221950840">0152 219 50840</a>';
         $("fb").onclick = function (ev) { ev.preventDefault(); mailto(d); };
@@ -854,5 +854,6 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
   onScroll();
 })();
 </script>
+<script src="consent.js?v=1" defer></script>
 </body>
 </html>

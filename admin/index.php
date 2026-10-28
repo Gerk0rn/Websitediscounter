@@ -150,6 +150,23 @@ if ($post && $action === 'prices') {
     redirect();
 }
 
+// ---------- Angemeldet: Meta-Pixel-ID speichern ----------
+if ($post && $action === 'tracking') {
+    $id = preg_replace('/\s+/', '', $_POST['pixel'] ?? '');
+    if ($id !== '' && !preg_match('/^\d{5,20}$/', $id)) {
+        flash('Die Pixel-ID besteht nur aus Ziffern (z. B. 123456789012345).', 'err');
+        redirect();
+    }
+    $settings = data_read('settings') ?? [];
+    $settings['pixel'] = $id;
+    if (data_write('settings', $settings)) {
+        flash($id === '' ? 'Meta-Pixel deaktiviert.' : 'Pixel-ID gespeichert. Das Pixel lädt bei Besuchern, die zustimmen.');
+    } else {
+        flash('Speichern fehlgeschlagen – der Ordner data/ ist nicht beschreibbar.', 'err');
+    }
+    redirect();
+}
+
 // ---------- Angemeldet: Passwort ändern ----------
 if ($post && $action === 'password') {
     if (!password_verify($_POST['current'] ?? '', $user['password'])) {
@@ -189,6 +206,14 @@ page('Preise', '
     <div class="prices">' . $fields . '</div>
     <p class="muted">' . h($stand) . '</p>
     <div class="row"><button class="btn">Preise speichern</button><a class="btn ghost" href="../#pakete" target="_blank" rel="noopener">Website ansehen ↗</a></div>
+  </form>
+</div>
+<div class="card">
+  <h2>Meta-Pixel (Facebook)</h2>
+  <form method="post" action="./?a=tracking">' . csrf_field() . '
+    <label>Pixel-ID <span class="hint">(leer lassen = Pixel aus)</span><input name="pixel" value="' . h(get_pixel_id()) . '" inputmode="numeric" pattern="[0-9 ]*" maxlength="25" placeholder="z. B. 123456789012345"></label>
+    <p class="muted">Du findest die ID im Meta Events Manager unter „Datenquellen“. Das Pixel lädt nur bei Besuchern, die im Cookie-Banner zustimmen. Gemessen werden Seitenaufrufe und abgeschickte Anfragen (ohne Formularinhalte).</p>
+    <button class="btn ghost">Pixel-ID speichern</button>
   </form>
 </div>
 <div class="card">
