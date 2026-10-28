@@ -127,6 +127,23 @@ form .btn{width:100%}
 .steps b{display:block;font-size:2.6rem;line-height:1;margin-bottom:12px}
 .steps p{color:#555}
 
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.faq-head{position:sticky;top:110px}
+.faq-note{color:#555;max-width:22em}
+.faq details{border-top:2px solid #000}
+.faq details:last-child{border-bottom:2px solid #000}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-weight:800;font-size:1.12rem;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";flex:none;width:34px;height:34px;display:grid;place-items:center;border:2px solid #000;font-size:1.3rem;font-weight:700;transition:background .2s,color .2s}
+.faq summary:hover:after{background:#000;color:#fff}
+.faq details[open] summary:after{content:"–";background:#000;color:#fff}
+.faq summary:focus-visible{outline:2px solid #000;outline-offset:4px}
+.faq .a{padding:0 50px 22px 0;color:#444}
+.faq .a p:last-child{margin:0}
+.faq details[open] .a{animation:faqIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes faqIn{from{opacity:0;transform:translateY(-8px)}}
+
 /* Kontakt + Footer */
 .contact{background:#000;color:#fff}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:1px solid #333;margin-top:48px;padding-top:28px;font-style:normal}
@@ -143,9 +160,13 @@ footer nav a:hover{text-decoration:underline}
   .art{max-width:440px}
   .packs{grid-template-columns:1fr}
   .pack+.pack{border-left:0;border-top:2px solid #000}
-  .steps,.facts{grid-template-columns:1fr}
+  .steps,.facts,.faq-grid{grid-template-columns:1fr}
+  .faq-grid{gap:24px}
+  .faq-head{position:static}
 }
 @media(max-width:600px){
+  .faq summary{font-size:1rem;padding:18px 0}
+  .faq .a{padding-right:0}
   .brand img{width:76px}
   .brand span{font-size:.62rem;padding-left:8px}
   header .btn{padding:8px 12px;font-size:.85rem}
@@ -197,6 +218,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
 .steps div:hover b{transform:translateX(8px)}
 
 @media(prefers-reduced-motion:reduce){
+  .faq details[open] .a{animation:none}
   .ln>span,.intro{animation:none;transform:none;opacity:1}
   .js [data-r],.js [data-r] .ci{opacity:1!important;transform:none!important;clip-path:none!important;transition:none}
   .marquee .track{animation:none}
@@ -204,6 +226,102 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
   .steps div:before{transform:none!important}
 }
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Optimierst du meine Website auch für Google (SEO)?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja. Jede Website baue ich von Anfang an so, dass Google sie gut lesen und einordnen kann: schnelle Ladezeiten, saubere Seitenstruktur mit klaren Überschriften, aussagekräftige Seitentitel und Beschreibungen, Bildbeschreibungen und eine einwandfreie Darstellung auf dem Smartphone. Ab dem Business-Paket kümmere ich mich zusätzlich um die passenden Suchbegriffe für deine Branche und Region, im Premium-Paket um eine erweiterte Optimierung inklusive Ladezeit-Feinschliff. Auf Wunsch unterstütze ich dich auch bei Google-Werbeanzeigen (SEA). Ehrlicherweise gilt: Eine bestimmte Platzierung kann niemand seriös garantieren – eine solide Grundlage aber schon."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Kann ich Inhalte später selbst ändern?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Auf Wunsch ja. Ich richte dir einen persönlichen Admin-Bereich ein, in dem du dich mit eigenen Zugangsdaten anmeldest und ausgewählte Inhalte selbst pflegst – zum Beispiel Preise, Texte, Öffnungszeiten, Neuigkeiten oder Bilder. Welche Bereiche du selbst bearbeiten möchtest, legen wir gemeinsam fest. So bleibt die Bedienung einfach und das Design kann nicht versehentlich verrutschen. Natürlich bekommst du eine kurze Einweisung, damit du sofort loslegen kannst."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Kommen nach dem Projekt laufende Kosten auf mich zu?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Der Paketpreis ist ein einmaliger Festpreis für die Erstellung deiner Website. Für den Betrieb fallen in der Regel noch Kosten für Domain (deine Internetadresse) und Hosting (den Speicherplatz im Netz) an – je nach Anbieter und Umfang meist ein überschaubarer monatlicher Betrag. Diese Punkte besprechen wir nach dem Projekt ganz transparent miteinander. Du entscheidest dann, welche Lösung zu dir passt – versteckte Kosten gibt es nicht."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Wie lange dauert es, bis meine Website online ist?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Eine Start-Website ist oft schon nach ein bis zwei Wochen online, größere Projekte brauchen meist drei bis fünf Wochen. Den genauen Zeitplan bekommst du mit deinem Angebot. Am schnellsten geht es, wenn Texte, Bilder und Logo bereitliegen. Fehlt noch etwas, ist das kein Problem – dann planen wir das von Anfang an mit ein."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Was muss ich für den Start vorbereiten?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Im Grunde nur deine Ideen. Hilfreich sind dein Logo, vorhandene Texte und Fotos sowie Beispiele von Websites, die dir gefallen. Hast du noch keine Texte oder passenden Bilder, unterstütze ich dich gern dabei – das kannst du im Preisrechner direkt als Extra auswählen."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Ist die Website auf dem Smartphone optimiert?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Selbstverständlich. Jede Website wird für Smartphone, Tablet und Desktop gestaltet und auf allen Geräten getestet. Mehr als die Hälfte aller Besucher kommt heute mobil – deshalb ist das bei mir kein Extra, sondern Standard."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Sind Impressum und Datenschutzerklärung enthalten?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja, beide Seiten werden in jedem Paket sauber eingebunden und sind von jeder Unterseite erreichbar. Die Inhalte stimmen wir gemeinsam auf deine Website ab. Bitte beachte: Ich bin kein Rechtsanwalt. Für die rechtliche Prüfung deiner Angaben bist du selbst verantwortlich – bei Bedarf empfehle ich einen spezialisierten Generator oder eine anwaltliche Beratung."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Ich habe schon eine Website. Kannst du sie erneuern?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sehr gern. Ich übernehme die wichtigen Inhalte deiner bisherigen Seite, bringe Design und Technik auf den aktuellen Stand und achte darauf, dass bestehende Google-Platzierungen beim Umzug möglichst erhalten bleiben."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Warum nicht einfach einen Homepage-Baukasten nutzen?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Für eine ganz einfache Visitenkarte kann ein Baukasten reichen. Du investierst dann aber deine eigene Zeit in Gestaltung, Texte und Technik – und bist an den Anbieter und seine monatlichen Gebühren gebunden. Bei mir bekommst du ein individuelles Design, das zu deiner Marke passt, eine saubere technische Grundlage für Google und einen festen Ansprechpartner, der sich um alles kümmert. Und das zu einem klaren Festpreis."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Bist du nach dem Start weiter für mich da?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Ja. Auch nach dem Livegang bleibe ich dein Ansprechpartner – für Änderungen, Erweiterungen oder Fragen. Auf Wunsch übernehme ich auch die regelmäßige Pflege mit Updates und Sicherheitschecks. Den passenden Umfang besprechen wir individuell."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Ist meine Anfrage verbindlich?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Nein. Deine Anfrage ist kostenlos und unverbindlich. Du bekommst zuerst ein persönliches Angebot und entscheidest dann in Ruhe, ob wir zusammenarbeiten."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
@@ -363,6 +481,62 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         <div><b>1</b><h3>Preis berechnen</h3><p>Drei Klicks, kein Fachchinesisch.</p></div>
         <div><b>2</b><h3>Anfrage senden</h3><p>Ich melde mich innerhalb von 24 Stunden.</p></div>
         <div><b>3</b><h3>Online gehen</h3><p>Ich baue deine Website – du gibst an jedem wichtigen Punkt dein Okay.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap faq-grid">
+      <div class="faq-head">
+        <span class="label" data-r>Fragen &amp; Antworten</span>
+        <h2 data-r="clip">Gut zu<br>wissen.</h2>
+        <p class="faq-note" data-r>Deine Frage ist nicht dabei? Schreib mir einfach an <a href="mailto:info@grkn.net">info@grkn.net</a> oder ruf an.</p>
+      </div>
+      <div class="faq" data-stagger>
+        <details>
+          <summary>Optimierst du meine Website auch für Google (SEO)?</summary>
+          <div class="a"><p>Ja. Jede Website baue ich von Anfang an so, dass Google sie gut lesen und einordnen kann: schnelle Ladezeiten, saubere Seitenstruktur mit klaren Überschriften, aussagekräftige Seitentitel und Beschreibungen, Bildbeschreibungen und eine einwandfreie Darstellung auf dem Smartphone.</p><p>Ab dem Business-Paket kümmere ich mich zusätzlich um die passenden Suchbegriffe für deine Branche und Region, im Premium-Paket um eine erweiterte Optimierung inklusive Ladezeit-Feinschliff. Auf Wunsch unterstütze ich dich auch bei Google-Werbeanzeigen (SEA). Ehrlicherweise gilt: Eine bestimmte Platzierung kann niemand seriös garantieren – eine solide Grundlage aber schon.</p></div>
+        </details>
+        <details>
+          <summary>Kann ich Inhalte später selbst ändern?</summary>
+          <div class="a"><p>Auf Wunsch ja. Ich richte dir einen persönlichen Admin-Bereich ein, in dem du dich mit eigenen Zugangsdaten anmeldest und ausgewählte Inhalte selbst pflegst – zum Beispiel Preise, Texte, Öffnungszeiten, Neuigkeiten oder Bilder.</p><p>Welche Bereiche du selbst bearbeiten möchtest, legen wir gemeinsam fest. So bleibt die Bedienung einfach und das Design kann nicht versehentlich verrutschen. Natürlich bekommst du eine kurze Einweisung, damit du sofort loslegen kannst.</p></div>
+        </details>
+        <details>
+          <summary>Kommen nach dem Projekt laufende Kosten auf mich zu?</summary>
+          <div class="a"><p>Der Paketpreis ist ein einmaliger Festpreis für die Erstellung deiner Website. Für den Betrieb fallen in der Regel noch Kosten für Domain (deine Internetadresse) und Hosting (den Speicherplatz im Netz) an – je nach Anbieter und Umfang meist ein überschaubarer monatlicher Betrag.</p><p>Diese Punkte besprechen wir nach dem Projekt ganz transparent miteinander. Du entscheidest dann, welche Lösung zu dir passt – versteckte Kosten gibt es nicht.</p></div>
+        </details>
+        <details>
+          <summary>Wie lange dauert es, bis meine Website online ist?</summary>
+          <div class="a"><p>Eine Start-Website ist oft schon nach ein bis zwei Wochen online, größere Projekte brauchen meist drei bis fünf Wochen. Den genauen Zeitplan bekommst du mit deinem Angebot.</p><p>Am schnellsten geht es, wenn Texte, Bilder und Logo bereitliegen. Fehlt noch etwas, ist das kein Problem – dann planen wir das von Anfang an mit ein.</p></div>
+        </details>
+        <details>
+          <summary>Was muss ich für den Start vorbereiten?</summary>
+          <div class="a"><p>Im Grunde nur deine Ideen. Hilfreich sind dein Logo, vorhandene Texte und Fotos sowie Beispiele von Websites, die dir gefallen.</p><p>Hast du noch keine Texte oder passenden Bilder, unterstütze ich dich gern dabei – das kannst du im Preisrechner direkt als Extra auswählen.</p></div>
+        </details>
+        <details>
+          <summary>Ist die Website auf dem Smartphone optimiert?</summary>
+          <div class="a"><p>Selbstverständlich. Jede Website wird für Smartphone, Tablet und Desktop gestaltet und auf allen Geräten getestet. Mehr als die Hälfte aller Besucher kommt heute mobil – deshalb ist das bei mir kein Extra, sondern Standard.</p></div>
+        </details>
+        <details>
+          <summary>Sind Impressum und Datenschutzerklärung enthalten?</summary>
+          <div class="a"><p>Ja, beide Seiten werden in jedem Paket sauber eingebunden und sind von jeder Unterseite erreichbar. Die Inhalte stimmen wir gemeinsam auf deine Website ab.</p><p>Bitte beachte: Ich bin kein Rechtsanwalt. Für die rechtliche Prüfung deiner Angaben bist du selbst verantwortlich – bei Bedarf empfehle ich einen spezialisierten Generator oder eine anwaltliche Beratung.</p></div>
+        </details>
+        <details>
+          <summary>Ich habe schon eine Website. Kannst du sie erneuern?</summary>
+          <div class="a"><p>Sehr gern. Ich übernehme die wichtigen Inhalte deiner bisherigen Seite, bringe Design und Technik auf den aktuellen Stand und achte darauf, dass bestehende Google-Platzierungen beim Umzug möglichst erhalten bleiben.</p></div>
+        </details>
+        <details>
+          <summary>Warum nicht einfach einen Homepage-Baukasten nutzen?</summary>
+          <div class="a"><p>Für eine ganz einfache Visitenkarte kann ein Baukasten reichen. Du investierst dann aber deine eigene Zeit in Gestaltung, Texte und Technik – und bist an den Anbieter und seine monatlichen Gebühren gebunden.</p><p>Bei mir bekommst du ein individuelles Design, das zu deiner Marke passt, eine saubere technische Grundlage für Google und einen festen Ansprechpartner, der sich um alles kümmert. Und das zu einem klaren Festpreis.</p></div>
+        </details>
+        <details>
+          <summary>Bist du nach dem Start weiter für mich da?</summary>
+          <div class="a"><p>Ja. Auch nach dem Livegang bleibe ich dein Ansprechpartner – für Änderungen, Erweiterungen oder Fragen. Auf Wunsch übernehme ich auch die regelmäßige Pflege mit Updates und Sicherheitschecks. Den passenden Umfang besprechen wir individuell.</p></div>
+        </details>
+        <details>
+          <summary>Ist meine Anfrage verbindlich?</summary>
+          <div class="a"><p>Nein. Deine Anfrage ist kostenlos und unverbindlich. Du bekommst zuerst ein persönliches Angebot und entscheidest dann in Ruhe, ob wir zusammenarbeiten.</p></div>
+        </details>
       </div>
     </div>
   </section>
@@ -590,6 +764,13 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     }
     if (!calm) track.style.marginLeft = -((y * 0.3) % (track.scrollWidth / 3)) + "px";
   }
+  // FAQ: immer nur eine Antwort offen
+  all(".faq details").forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) all(".faq details[open]").forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+
   // ===== Aktuelle Preise aus dem Admin-Backend =====
   function applyPrices(data) {
     ["start", "business", "premium"].forEach(function (key, i) {
