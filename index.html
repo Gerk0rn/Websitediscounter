@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Website Discounter – Deine Website zum Festpreis</title>
 <meta name="description" content="Websites zum Festpreis: Start 500 €, Business 1.200 €, Premium 1.650 €. Preis in unter einer Minute berechnen und direkt anfragen. Ein Angebot von Gerken Medien.">
+<script>document.documentElement.className += " js";</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 *{box-sizing:border-box}
@@ -155,33 +156,82 @@ footer nav a:hover{text-decoration:underline}
   .fields{grid-template-columns:1fr}
   footer nav a{margin:0 20px 0 0}
 }
+
+/* ===== Motion ===== */
+.btn{transition:background .25s,color .25s,border-color .25s,transform .25s}
+.btn:hover{transform:translateY(-2px)}
+.choice,.switch button,.fields input,.fields textarea{transition:background .2s,color .2s,border-color .2s,transform .2s}
+.choice:hover{transform:translateX(4px)}
+.grid3 .choice:hover{transform:translateY(-3px)}
+
+header{transition:box-shadow .3s}
+header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.progress{position:absolute;left:0;bottom:-2px;height:3px;width:100%;background:#000;transform:scaleX(0);transform-origin:left}
+
+.hero{overflow:hidden}
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln>span{display:block;transform:translateY(110%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
+.ln:nth-child(2)>span{animation-delay:.15s}
+@keyframes rise{to{transform:none}}
+.intro{opacity:0;transform:translateY(24px);animation:intro .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes intro{to{opacity:1;transform:none}}
+.i1{animation-delay:.35s}.i2{animation-delay:.5s}.i3{animation-delay:.65s}.i4{animation-delay:.8s}.i5{animation-delay:.5s}
+.art,.hero .wrap>div:first-child{will-change:transform}
+
+.marquee{background:#000;color:#fff;border-top:1px solid #222;overflow:hidden;white-space:nowrap;padding:18px 0}
+.marquee .track{display:inline-flex;animation:marquee 28s linear infinite}
+.marquee span{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em;padding-right:40px}
+.marquee span:nth-child(4n+3){color:transparent;-webkit-text-stroke:1.5px #fff}
+@keyframes marquee{to{transform:translateX(-33.333%)}}
+
+.js [data-r]{opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),clip-path 1s cubic-bezier(.7,0,.2,1);transition-delay:var(--d,0s)}
+.js [data-r=scale]{transform:scale(.92) translateY(30px)}
+.js [data-r=left]{transform:translateX(-60px)}
+.js [data-r=clip]{opacity:1;transform:none}
+.js [data-r].in{opacity:1;transform:none}
+.js [data-r=clip] .ci{display:block;clip-path:inset(0 0 100% 0);transform:translateY(40px);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1),transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.js [data-r=clip].in .ci{clip-path:inset(-10% -10% -10% -10%);transform:none}
+.steps div{position:relative;border-top:0}
+.steps div:before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:#000;transform-origin:left;transition:transform 1.1s cubic-bezier(.7,0,.2,1) calc(var(--d,0s) + .2s)}
+.js .steps div[data-r]:not(.in):before{transform:scaleX(0)}
+.steps b{transition:transform .6s}
+.steps div:hover b{transform:translateX(8px)}
+
+@media(prefers-reduced-motion:reduce){
+  .ln>span,.intro{animation:none;transform:none;opacity:1}
+  .js [data-r],.js [data-r] .ci{opacity:1!important;transform:none!important;clip-path:none!important;transition:none}
+  .marquee .track{animation:none}
+  .progress{display:none}
+  .steps div:before{transform:none!important}
+}
 </style>
 </head>
 <body>
 
-<header>
+<header id="top">
   <div class="wrap">
     <a class="brand" href="./"><img src="img/logo.svg" alt="Gerken Medien" width="96" height="35"><span>Website<br>Discounter</span></a>
     <a class="btn" href="#rechner">Preis berechnen</a>
   </div>
+  <div class="progress" id="progress"></div>
 </header>
 
 <main>
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="label">Website Discounter von Gerken Medien</span>
-        <h1>Deine Website.<br>Zum Festpreis.</h1>
-        <p>Drei kurze Fragen – und du weißt, was deine Website kostet. Keine Stundenzettel, keine Überraschungen.</p>
-        <a class="btn white" href="#rechner">Jetzt Preis berechnen →</a>
-        <div class="prices">
+        <span class="label intro">Website Discounter von Gerken Medien</span>
+        <h1><span class="ln"><span>Deine Website.</span></span><span class="ln"><span>Zum Festpreis.</span></span></h1>
+        <p class="intro i1">Drei kurze Fragen – und du weißt, was deine Website kostet. Keine Stundenzettel, keine Überraschungen.</p>
+        <a class="btn white intro i2" href="#rechner">Jetzt Preis berechnen →</a>
+        <div class="prices intro i3">
           <div><small>Start</small><strong>500 €</strong></div>
           <div><small>Business</small><strong>1.200 €</strong></div>
           <div><small>Premium</small><strong>1.650 €</strong></div>
         </div>
       </div>
-      <figure class="art" aria-hidden="true">
-        <svg viewBox="0 0 460 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <figure class="art" aria-hidden="true" id="art">
+        <svg class="intro i5" viewBox="0 0 460 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <!-- Browserfenster -->
           <rect x="10" y="40" width="360" height="270" rx="10"/>
           <path d="M10 76h360"/>
@@ -222,9 +272,11 @@ footer nav a:hover{text-decoration:underline}
     </div>
   </section>
 
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"><span>Festpreis ab 500 €</span><span>•</span><span>Persönlicher Ansprechpartner</span><span>•</span><span>Perfekt auf dem Handy</span><span>•</span><span>Online in 1–2 Wochen</span><span>•</span></div></div>
+
   <section id="rechner" class="grey">
     <div class="wrap">
-      <div class="calc" id="calc">
+      <div class="calc" id="calc" data-r="scale">
         <div id="quiz">
           <h2>Was kostet meine Website?</h2>
           <div class="bar"><i id="bar"></i></div>
@@ -298,17 +350,17 @@ footer nav a:hover{text-decoration:underline}
 
   <section id="pakete">
     <div class="wrap">
-      <span class="label">Pakete</span>
-      <h2>Drei Pakete.<br>Ein fairer Preis.</h2>
-      <div class="packs" id="packs"></div>
+      <span class="label" data-r>Pakete</span>
+      <h2 data-r="clip">Drei Pakete.<br>Ein fairer Preis.</h2>
+      <div class="packs" id="packs" data-stagger></div>
     </div>
   </section>
 
   <section class="grey">
     <div class="wrap">
-      <span class="label">Ablauf</span>
-      <h2>So einfach geht's.</h2>
-      <div class="steps">
+      <span class="label" data-r>Ablauf</span>
+      <h2 data-r="clip">So einfach geht's.</h2>
+      <div class="steps" data-stagger>
         <div><b>1</b><h3>Preis berechnen</h3><p>Drei Klicks, kein Fachchinesisch.</p></div>
         <div><b>2</b><h3>Anfrage senden</h3><p>Ich melde mich innerhalb von 24 Stunden.</p></div>
         <div><b>3</b><h3>Online gehen</h3><p>Ich baue deine Website – du gibst an jedem wichtigen Punkt dein Okay.</p></div>
@@ -318,14 +370,14 @@ footer nav a:hover{text-decoration:underline}
 
   <section class="contact" id="kontakt">
     <div class="wrap">
-      <span class="label" style="color:#999">Kontakt</span>
-      <h2>Lieber direkt sprechen?</h2>
-      <p style="color:#bbb;max-width:34em">Der Website Discounter ist ein Angebot von Gerken Medien – Kreativagentur für Medien aus Dinklage.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+      <span class="label" style="color:#999" data-r>Kontakt</span>
+      <h2 data-r="clip">Lieber direkt sprechen?</h2>
+      <p style="color:#bbb;max-width:34em" data-r>Der Website Discounter ist ein Angebot von Gerken Medien – Kreativagentur für Medien aus Dinklage.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px" data-r>
         <a class="btn white" href="mailto:info@grkn.net">E-Mail schreiben</a>
         <a class="btn white" style="background:#000;color:#fff" href="tel:+4915124174401">Anrufen</a>
       </div>
-      <address class="facts">
+      <address class="facts" data-stagger>
         <div><small>Telefon</small><a href="tel:+4915124174401">+49 151 241 744 01</a></div>
         <div><small>E-Mail</small><a href="mailto:info@grkn.net">info@grkn.net</a></div>
         <div><small>Adresse</small>August-Wegmann-Str. 2, 49413 Dinklage</div>
@@ -364,7 +416,7 @@ footer nav a:hover{text-decoration:underline}
   PACKS.forEach(function (p, i) {
     var d = document.createElement("div");
     d.className = "pack" + (i === 1 ? " dark" : "");
-    d.innerHTML = '<span class="no">0' + (i + 1) + (i === 1 ? " · Beliebt" : "") + '</span><h3></h3><p class="for"></p><div class="price">' + euro(p.price) + ' €</div><ul></ul><button type="button" class="btn' + (i === 1 ? " white" : "") + '"></button>';
+    d.innerHTML = '<span class="no">0' + (i + 1) + (i === 1 ? " · Beliebt" : "") + '</span><h3></h3><p class="for"></p><div class="price"><span data-to="' + p.price + '">' + euro(p.price) + '</span> €</div><ul></ul><button type="button" class="btn' + (i === 1 ? " white" : "") + '"></button>';
     d.querySelector("h3").textContent = p.name;
     d.querySelector(".for").textContent = p.for;
     p.list.forEach(function (t) { d.querySelector("ul").appendChild(li(t)); });
@@ -479,6 +531,69 @@ footer nav a:hover{text-decoration:underline}
   };
 
   show();
+
+  // ===== Motion beim Scrollen =====
+  var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  all("[data-r=clip]").forEach(function (h) { h.innerHTML = '<span class="ci">' + h.innerHTML + "</span>"; });
+
+  all("[data-stagger]").forEach(function (box) {
+    Array.prototype.forEach.call(box.children, function (c, i) {
+      if (!c.hasAttribute("data-r")) c.setAttribute("data-r", "");
+      c.style.setProperty("--d", (i * 0.14) + "s");
+    });
+  });
+
+  function countUp(el) {
+    var to = Number(el.dataset.to), t0 = null;
+    if (calm) return;
+    function tick(t) {
+      if (!t0) t0 = t;
+      var k = Math.min((t - t0) / 1200, 1);
+      el.textContent = euro(Math.round(to * (1 - Math.pow(1 - k, 3))));
+      if (k < 1) requestAnimationFrame(tick);
+    }
+    el.textContent = "0";
+    requestAnimationFrame(tick);
+  }
+
+  function reveal(el) {
+    el.classList.add("in");
+    all("[data-to]", el).forEach(countUp);
+  }
+
+  if ("IntersectionObserver" in window && !calm) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+    all("[data-r]").forEach(function (el) { io.observe(el); });
+  } else {
+    all("[data-r]").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  // Fortschrittsbalken, Header-Schatten, Parallax im Startbereich, Laufband
+  var bar = $("progress"), head = $("top"), art = $("art"), heroText = document.querySelector(".hero .wrap > div"),
+      track = $("track"), ticking = false;
+  // Laufband dreifach füllen, damit es nahtlos endlos läuft
+  track.innerHTML = track.innerHTML + track.innerHTML + track.innerHTML;
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
+    head.classList.toggle("scrolled", y > 10);
+    if (!calm && y < innerHeight * 1.2) {
+      art.style.transform = "translateY(" + (y * 0.25) + "px) rotate(" + (y * 0.01) + "deg)";
+      heroText.style.transform = "translateY(" + (y * 0.12) + "px)";
+      heroText.style.opacity = Math.max(1 - y / 700, 0.2);
+    }
+    if (!calm) track.style.marginLeft = -((y * 0.3) % (track.scrollWidth / 3)) + "px";
+  }
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
 })();
 </script>
 </body>
