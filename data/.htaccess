@@ -1,0 +1,6 @@
+# Gespeicherte Preise und Zugangsdaten nie über den Browser ausliefern
+Require all denied
+<IfModule !mod_authz_core.c>
+  Order deny,allow
+  Deny from all
+</IfModule>

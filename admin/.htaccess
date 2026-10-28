@@ -1,0 +1,4 @@
+# lib.php ist nur zum Einbinden gedacht, nicht zum direkten Aufruf
+<Files "lib.php">
+  Require all denied
+</Files>

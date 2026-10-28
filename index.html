@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Website Discounter – Deine Website zum Festpreis</title>
-<meta name="description" content="Websites zum Festpreis: Start 500 €, Business 1.200 €, Premium 1.650 €. Preis in unter einer Minute berechnen und direkt anfragen. Ein Angebot von Gerken Medien.">
+<meta name="description" content="Websites zum Festpreis in drei Paketen. Preis in unter einer Minute berechnen und direkt anfragen. Ein Angebot von Gerken Medien.">
 <script>document.documentElement.className += " js";</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
@@ -180,7 +180,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
 
 .marquee{background:#000;color:#fff;border-top:1px solid #222;overflow:hidden;white-space:nowrap;padding:18px 0}
 .marquee .track{display:inline-flex;animation:marquee 28s linear infinite}
-.marquee span{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em;padding-right:40px}
+.marquee .track>span{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em;padding-right:40px}
 @keyframes marquee{to{transform:translateX(-33.333%)}}
 
 .js [data-r]{opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),clip-path 1s cubic-bezier(.7,0,.2,1);transition-delay:var(--d,0s)}
@@ -224,9 +224,9 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         <p class="intro i1">Drei kurze Fragen – und du weißt, was deine Website kostet. Keine Stundenzettel, keine Überraschungen.</p>
         <a class="btn white intro i2" href="#rechner">Jetzt Preis berechnen →</a>
         <div class="prices intro i3">
-          <div><small>Start</small><strong>500 €</strong></div>
-          <div><small>Business</small><strong>1.200 €</strong></div>
-          <div><small>Premium</small><strong>1.650 €</strong></div>
+          <div><small>Start</small><strong><span data-price="0">500</span> €</strong></div>
+          <div><small>Business</small><strong><span data-price="1">1.200</span> €</strong></div>
+          <div><small>Premium</small><strong><span data-price="2">1.650</span> €</strong></div>
         </div>
       </div>
       <figure class="art" aria-hidden="true" id="art">
@@ -265,13 +265,13 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
           <defs><path id="ring" d="M360 70m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
           <g class="spin"><text fill="#000" stroke="none" font-size="11" font-weight="700" font-family="Arial,sans-serif"><textPath href="#ring" textLength="272" lengthAdjust="spacing">FESTPREIS • FESTPREIS • FESTPREIS • </textPath></text></g>
           <text x="360" y="66" fill="#000" stroke="none" font-size="11" font-family="Arial,sans-serif" text-anchor="middle">ab</text>
-          <text x="360" y="88" fill="#000" stroke="none" font-size="24" font-weight="800" font-family="Arial,sans-serif" text-anchor="middle">500 €</text>
+          <text x="360" y="88" fill="#000" stroke="none" font-size="24" font-weight="800" font-family="Arial,sans-serif" text-anchor="middle"><tspan data-price="0">500</tspan> €</text>
         </svg>
       </figure>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true"><div class="track" id="track"><span>Festpreis ab 500 €</span><span>•</span><span>Persönlicher Ansprechpartner</span><span>•</span><span>Perfekt auf dem Handy</span><span>•</span><span>Online in 1–2 Wochen</span><span>•</span></div></div>
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"><span>Festpreis ab <b data-price="0" style="font-weight:inherit">500</b> €</span><span>•</span><span>Persönlicher Ansprechpartner</span><span>•</span><span>Perfekt auf dem Handy</span><span>•</span><span>Online in 1–2 Wochen</span><span>•</span></div></div>
 
   <section id="rechner" class="grey">
     <div class="wrap">
@@ -415,7 +415,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
   PACKS.forEach(function (p, i) {
     var d = document.createElement("div");
     d.className = "pack" + (i === 1 ? " dark" : "");
-    d.innerHTML = '<span class="no">0' + (i + 1) + (i === 1 ? " · Beliebt" : "") + '</span><h3></h3><p class="for"></p><div class="price"><span data-to="' + p.price + '">' + euro(p.price) + '</span> €</div><ul></ul><button type="button" class="btn' + (i === 1 ? " white" : "") + '"></button>';
+    d.innerHTML = '<span class="no">0' + (i + 1) + (i === 1 ? " · Beliebt" : "") + '</span><h3></h3><p class="for"></p><div class="price"><span data-price="' + i + '" data-to="' + p.price + '">' + euro(p.price) + '</span> €</div><ul></ul><button type="button" class="btn' + (i === 1 ? " white" : "") + '"></button>';
     d.querySelector("h3").textContent = p.name;
     d.querySelector(".for").textContent = p.for;
     p.list.forEach(function (t) { d.querySelector("ul").appendChild(li(t)); });
@@ -466,6 +466,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
   PACKS.forEach(function (p) {
     var b = document.createElement("button");
     b.type = "button";
+    b.dataset.i = PACKS.indexOf(p);
     b.textContent = p.name + " · " + euro(p.price) + " €";
     b.onclick = function () { setPack(p); };
     $("switch").appendChild(b);
@@ -544,12 +545,12 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
   });
 
   function countUp(el) {
-    var to = Number(el.dataset.to), t0 = null;
+    var t0 = null;
     if (calm) return;
     function tick(t) {
       if (!t0) t0 = t;
       var k = Math.min((t - t0) / 1200, 1);
-      el.textContent = euro(Math.round(to * (1 - Math.pow(1 - k, 3))));
+      el.textContent = euro(Math.round(Number(el.dataset.to) * (1 - Math.pow(1 - k, 3))));
       if (k < 1) requestAnimationFrame(tick);
     }
     el.textContent = "0";
@@ -589,6 +590,28 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     }
     if (!calm) track.style.marginLeft = -((y * 0.3) % (track.scrollWidth / 3)) + "px";
   }
+  // ===== Aktuelle Preise aus dem Admin-Backend =====
+  function applyPrices(data) {
+    ["start", "business", "premium"].forEach(function (key, i) {
+      var v = Number(data[key]);
+      if (v > 0) PACKS[i].price = v;
+    });
+    all("[data-price]").forEach(function (el) {
+      var p = PACKS[el.getAttribute("data-price")];
+      if (el.hasAttribute("data-to")) el.setAttribute("data-to", p.price);
+      el.textContent = euro(p.price);
+    });
+    all("#switch button").forEach(function (b) {
+      var p = PACKS[b.dataset.i];
+      b.textContent = p.name + " · " + euro(p.price) + " €";
+    });
+    if (chosen) setPack(chosen);
+  }
+  fetch("prices.php", { cache: "no-store" })
+    .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    .then(applyPrices)
+    .catch(function () {});
+
   window.addEventListener("scroll", function () {
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });

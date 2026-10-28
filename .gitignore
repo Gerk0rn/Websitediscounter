@@ -1,0 +1,4 @@
+# Vom Admin-Backend auf dem Server erzeugte Daten (Preise, Zugang) – nie ins Repo,
+# sonst würde jeder Deploy sie überschreiben
+/data/*
+!/data/.htaccess
