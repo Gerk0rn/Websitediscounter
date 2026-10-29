@@ -161,6 +161,70 @@ form .btn{width:100%}
 .steps b{display:block;font-size:2.6rem;line-height:1;margin-bottom:12px}
 .steps p{color:#555}
 
+/* Designbeispiele */
+#beispiele{background:#000;color:#fff}
+.ex-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap}
+.ex-intro{color:#aaa;max-width:26em;margin:0}
+.ex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.ex h3{font-size:1.45rem;margin:16px 0 4px}
+.ex>p{color:#aaa;font-size:.95rem;margin:0}
+.ex-page p{margin:0 0 8px}
+.ex-meta{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+.ex-tag{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;background:#fff;color:#000}
+.ex-tag.ghost{background:transparent;color:#fff;border:1.5px solid #555}
+.ex-frame{border:2px solid #fff;background:#fff;color:#111}
+.ex-bar{display:flex;align-items:center;gap:5px;padding:7px 10px;background:#e9e9e9;border-bottom:1px solid #ccc}
+.ex-bar i{width:7px;height:7px;border-radius:50%;background:#bbb}
+.ex-bar span{margin-left:8px;flex:1;background:#fff;border-radius:8px;font-size:9px;color:#777;padding:2px 8px;text-align:center}
+.ex-view{height:300px;overflow:hidden;position:relative}
+.ex-page{transition:transform 3.5s cubic-bezier(.45,0,.2,1);font-size:10px;line-height:1.45}
+.ex:hover .ex-page{transform:translateY(calc(-100% + 300px))}
+.hint-touch{display:none}
+@media(hover:none){.ex-page{animation:exScroll 16s ease-in-out infinite alternate}.hint-hover{display:none}.hint-touch{display:inline}}
+@keyframes exScroll{0%,12%{transform:none}88%,100%{transform:translateY(calc(-100% + 300px))}}
+.ex-page img{display:none}
+/* gemeinsame Mini-Bausteine */
+.m-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 14px}
+.m-links{display:flex;gap:9px;color:#666;font-size:8.5px}
+.m-btn{display:inline-block;background:#111;color:#fff;padding:5px 10px;font-weight:700;font-size:8.5px}
+.m-btn.l{background:#fff;color:#111}
+.m-sec{padding:14px}
+.m-h{font-weight:800;font-size:13px;margin:0 0 8px;letter-spacing:-.01em}
+.m-row{display:flex;justify-content:space-between;border-bottom:1px solid #e5e5e5;padding:5px 0}
+.m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.m-card{border:1px solid #ddd;padding:8px}
+.m-card b{display:block;font-size:10px;margin:5px 0 2px}
+.m-ico{width:18px;height:18px;background:#111}
+.m-foot{background:#111;color:#999;padding:12px 14px;font-size:8px;display:flex;justify-content:space-between}
+.m-img{background:linear-gradient(160deg,#cfcfcf,#7d7d7d)}
+.m-map{height:70px;background:#eee;background-image:linear-gradient(#ddd 1px,transparent 1px),linear-gradient(90deg,#ddd 1px,transparent 1px);background-size:14px 14px;position:relative}
+.m-map:after{content:"";position:absolute;left:48%;top:35%;width:10px;height:10px;background:#111;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
+.m-field{border:1px solid #ccc;height:16px;margin-bottom:5px}
+/* Salon (Start) */
+.s1{font-family:Georgia,"Times New Roman",serif}
+.s1 .m-nav b{font-size:13px;letter-spacing:.18em}
+.s1 .hero1{height:190px;background:radial-gradient(ellipse at 78% 22%,rgba(255,255,255,.55),transparent 45%),linear-gradient(135deg,#9a9a9a,#3a3a3a);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.s1 .hero1 strong{font-size:22px;font-weight:400;line-height:1.1;margin-bottom:10px}
+.s1 .m-h{font-weight:400;font-size:15px}
+/* Tischlerei (Business) */
+.s2{font-family:-apple-system,"Segoe UI",Arial,sans-serif}
+.s2 .hero2{display:grid;grid-template-columns:1.1fr 1fr;gap:10px;padding:10px 14px 14px;align-items:center}
+.s2 .hero2 strong{display:block;font-size:17px;line-height:1.1;letter-spacing:-.02em;margin-bottom:8px}
+.s2 .wood{height:120px;background:repeating-linear-gradient(100deg,#8a8a8a 0 6px,#a5a5a5 6px 9px,#777 9px 15px,#9a9a9a 15px 19px)}
+.s2 .gal{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.s2 .gal div{height:58px}
+.s2 blockquote{margin:0;border-left:3px solid #111;padding:4px 0 4px 10px;font-style:italic;color:#444}
+/* Hotel (Premium) */
+.s3{font-family:-apple-system,"Segoe UI",Arial,sans-serif}
+.s3 .top{display:flex;justify-content:flex-end;gap:8px;background:#111;color:#bbb;padding:4px 14px;font-size:8px}
+.s3 .top b{color:#fff}
+.s3 .hero3{height:200px;position:relative;color:#fff;padding:18px 14px;background:linear-gradient(#b9b9b9 0 45%,transparent 45%),linear-gradient(170deg,transparent 52%,#5b5b5b 52%),linear-gradient(#cfcfcf,#cfcfcf)}
+.s3 .hero3:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.55))}
+.s3 .hero3 strong{position:relative;display:block;font-size:20px;letter-spacing:-.02em;margin-top:70px}
+.s3 .book{position:relative;margin:-22px 14px 0;background:#fff;border:1px solid #ccc;display:grid;grid-template-columns:repeat(3,1fr) auto;gap:6px;padding:7px;align-items:center;font-size:8px;color:#666}
+.s3 .book div{border-right:1px solid #e5e5e5}
+.s3 .room{height:52px;margin-bottom:5px}
+
 /* Über mich */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:88px;align-items:center}
 .me{position:relative;margin:0 28px 28px 0;z-index:0}
@@ -212,7 +276,8 @@ footer nav a:hover{text-decoration:underline}
   .art{max-width:440px}
   .packs{grid-template-columns:1fr}
   .pack+.pack{border-left:0;border-top:2px solid #000}
-  .steps,.facts,.faq-grid,.abo-info,.abo-info ul{grid-template-columns:1fr}
+  .steps,.facts,.faq-grid,.abo-info,.abo-info ul,.ex-grid{grid-template-columns:1fr}
+  .ex-grid{max-width:460px}
   .abo-info ul{grid-auto-flow:row;grid-template-rows:none}
   .faq-grid{gap:24px}
   .about{grid-template-columns:1fr;gap:56px}
@@ -579,6 +644,91 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         </ul>
       </div>
       <p class="tax">Mein Angebot richtet sich an Unternehmen, Selbstständige und Vereine. Alle Preise sind Endpreise – es kommt keine Mehrwertsteuer hinzu.</p>
+    </div>
+  </section>
+
+  <section id="beispiele" class="dark">
+    <div class="wrap">
+      <div class="ex-head">
+        <div>
+          <span class="label" style="color:#999" data-r>Designbeispiele</span>
+          <h2 data-r="clip" style="margin:0">So könnte deine<br>Website aussehen.</h2>
+        </div>
+        <p class="ex-intro" data-r>Drei Beispiele – eins pro Paket. <span class="hint-hover">Fahr mit der Maus über ein Beispiel, um durch die Seite zu scrollen.</span><span class="hint-touch">Die Beispiele scrollen automatisch durch die Seite.</span></p>
+      </div>
+      <div class="ex-grid" data-stagger>
+
+        <article class="ex">
+          <div class="ex-frame" aria-hidden="true">
+            <div class="ex-bar"><i></i><i></i><i></i><span>salon-linde.beispiel</span></div>
+            <div class="ex-view"><div class="ex-page s1">
+              <div class="m-nav"><b>SALON LINDE</b><span class="m-btn">Termin</span></div>
+              <div class="hero1"><strong>Schnitt.<br>Farbe.<br>Stil.</strong><span><span class="m-btn l">Jetzt anrufen</span></span></div>
+              <div class="m-sec"><p class="m-h">Leistungen</p>
+                <div class="m-row"><span>Damenschnitt</span><span>ab 39 €</span></div>
+                <div class="m-row"><span>Herrenschnitt</span><span>25 €</span></div>
+                <div class="m-row"><span>Farbe &amp; Strähnen</span><span>ab 49 €</span></div>
+                <div class="m-row"><span>Hochsteckfrisur</span><span>ab 59 €</span></div></div>
+              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Öffnungszeiten</p>
+                <div class="m-row"><span>Di – Fr</span><span>9 – 18 Uhr</span></div>
+                <div class="m-row"><span>Sa</span><span>8 – 13 Uhr</span></div></div>
+              <div class="m-sec"><p class="m-h">So findest du uns</p><div class="m-map"></div></div>
+              <div class="m-sec"><p class="m-h">Schreib uns</p><div class="m-field"></div><div class="m-field"></div><span class="m-btn">Senden</span></div>
+              <div class="m-foot"><span>© Salon Linde</span><span>Impressum · Datenschutz</span></div>
+            </div></div>
+          </div>
+          <div class="ex-meta"><span class="ex-tag">Paket Start</span><span class="ex-tag ghost">Designbeispiel</span></div>
+          <h3>Salon Linde</h3>
+          <p>Friseursalon – kompakter Auftritt mit Leistungen, Öffnungszeiten, Karte und Kontaktformular.</p>
+        </article>
+
+        <article class="ex">
+          <div class="ex-frame" aria-hidden="true">
+            <div class="ex-bar"><i></i><i></i><i></i><span>holzwerk-nord.beispiel</span></div>
+            <div class="ex-view"><div class="ex-page s2">
+              <div class="m-nav"><b style="font-size:12px">HOLZWERK<span style="font-weight:400"> NORD</span></b><div class="m-links"><span>Leistungen</span><span>Projekte</span><span>Team</span><span>Kontakt</span></div></div>
+              <div class="hero2"><div><strong>Möbel nach Maß aus Meisterhand.</strong><span style="color:#666">Tischlerei seit drei Generationen.</span><br><br><span class="m-btn">Beratung anfragen</span></div><div class="wood"></div></div>
+              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Leistungen</p><div class="m-grid">
+                <div class="m-card"><div class="m-ico"></div><b>Küchen</b>Planung &amp; Einbau</div>
+                <div class="m-card"><div class="m-ico"></div><b>Treppen</b>Holz &amp; Stahl</div>
+                <div class="m-card"><div class="m-ico"></div><b>Innenausbau</b>Türen &amp; Böden</div></div></div>
+              <div class="m-sec"><p class="m-h">Projekte</p><div class="gal"><div class="m-img"></div><div class="m-img" style="filter:brightness(1.15)"></div><div class="m-img" style="filter:brightness(.85)"></div><div class="m-img"></div></div></div>
+              <div class="m-sec"><blockquote>„Unsere neue Küche ist genau so geworden, wie wir sie uns vorgestellt haben.“</blockquote></div>
+              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Neuigkeiten</p><div class="m-row"><span>Neue Ausstellung eröffnet</span><span>→</span></div><div class="m-row"><span>Wir bilden aus</span><span>→</span></div></div>
+              <div class="m-sec"><p class="m-h">Kontakt</p><div class="m-field"></div><div class="m-field"></div><div class="m-field" style="height:30px"></div><span class="m-btn">Anfrage senden</span></div>
+              <div class="m-foot"><span>© Holzwerk Nord</span><span>Impressum · Datenschutz</span></div>
+            </div></div>
+          </div>
+          <div class="ex-meta"><span class="ex-tag">Paket Business</span><span class="ex-tag ghost">Designbeispiel</span></div>
+          <h3>Holzwerk Nord</h3>
+          <p>Tischlerei – mehrere Unterseiten mit Leistungen, Projektgalerie, Kundenstimmen und News.</p>
+        </article>
+
+        <article class="ex">
+          <div class="ex-frame" aria-hidden="true">
+            <div class="ex-bar"><i></i><i></i><i></i><span>hotel-seeblick.beispiel</span></div>
+            <div class="ex-view"><div class="ex-page s3">
+              <div class="top"><b>DE</b><span>EN</span><span>NL</span></div>
+              <div class="m-nav"><b style="font-size:12px;letter-spacing:.08em">SEEBLICK</b><div class="m-links"><span>Zimmer</span><span>Spa</span><span>Restaurant</span><span>Lage</span></div></div>
+              <div class="hero3"><strong>Ankommen.<br>Durchatmen.</strong></div>
+              <div class="book"><div>Anreise<br><b style="color:#111">12.06.</b></div><div>Abreise<br><b style="color:#111">15.06.</b></div><div>Gäste<br><b style="color:#111">2</b></div><span class="m-btn">Verfügbarkeit</span></div>
+              <div class="m-sec"><p class="m-h">Unsere Zimmer</p><div class="m-grid">
+                <div><div class="m-img room"></div><b>Doppelzimmer</b><br>ab 119 €</div>
+                <div><div class="m-img room" style="filter:brightness(1.12)"></div><b>Suite</b><br>ab 189 €</div>
+                <div><div class="m-img room" style="filter:brightness(.88)"></div><b>Familie</b><br>ab 159 €</div></div></div>
+              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Wellness &amp; Spa</p><div class="m-img" style="height:70px"></div></div>
+              <div class="m-sec"><p class="m-h">Tisch reservieren</p><div class="m-grid"><div class="m-field"></div><div class="m-field"></div><div class="m-field"></div></div><span class="m-btn">Reservieren</span></div>
+              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Anreise</p><div class="m-map"></div></div>
+              <div class="m-foot"><span>© Hotel Seeblick</span><span>Impressum · Datenschutz</span></div>
+            </div></div>
+          </div>
+          <div class="ex-meta"><span class="ex-tag">Paket Premium</span><span class="ex-tag ghost">Designbeispiel</span></div>
+          <h3>Hotel Seeblick</h3>
+          <p>Hotel – großer Auftritt mit Online-Buchung, Mehrsprachigkeit, Zimmerübersicht und Tischreservierung.</p>
+        </article>
+
+      </div>
+      <p class="ex-intro" style="margin-top:32px;font-size:.85rem">Alle Beispiele sind frei erfundene Designentwürfe und zeigen, was in den jeweiligen Paketen möglich ist.</p>
     </div>
   </section>
 
