@@ -133,14 +133,32 @@ if (!logged_in()) {
 
 // ---------- Angemeldet: Preise speichern ----------
 if ($post && $action === 'prices') {
-    $new = [];
+    $new = ['abo' => []];
     foreach (PACKAGES as $key => $label) {
         $raw = str_replace(['.', ' ', '€'], '', trim($_POST[$key] ?? ''));
         if (!preg_match('/^\d{1,6}$/', $raw) || (int) $raw < 1) {
-            flash("Bitte für $label einen Preis in ganzen Euro eingeben (z. B. 1200).", 'err');
+            flash("Bitte für $label einen Kaufpreis in ganzen Euro eingeben (z. B. 1200).", 'err');
             redirect();
         }
         $new[$key] = (int) $raw;
+
+        $monthly = parse_cents($_POST["abo_{$key}_monthly"] ?? '');
+        $setup = parse_cents($_POST["abo_{$key}_setup"] ?? '');
+        $term = trim($_POST["abo_{$key}_term"] ?? '');
+        $discount = trim($_POST["abo_{$key}_discount"] ?? '');
+        if ($monthly === null || $monthly < 1 || $setup === null) {
+            flash("Bitte für $label Abo-Preis und Einrichtung als Betrag eingeben (z. B. 39,99).", 'err');
+            redirect();
+        }
+        if (!preg_match('/^\d{1,2}$/', $term) || (int) $term < 1 || (int) $term > 60) {
+            flash("Bitte für $label eine Mindestlaufzeit von 1 bis 60 Monaten eingeben.", 'err');
+            redirect();
+        }
+        if (!preg_match('/^\d{1,2}$/', $discount) || (int) $discount > 90) {
+            flash("Bitte für $label einen Rabatt von 0 bis 90 % eingeben.", 'err');
+            redirect();
+        }
+        $new['abo'][$key] = ['monthly' => $monthly, 'setup' => $setup, 'term' => (int) $term, 'discount' => (int) $discount];
     }
     if (data_write('prices', $new + ['updated' => date('c')])) {
         flash('Gespeichert. Die neuen Preise sind sofort auf der Website zu sehen.');
@@ -188,10 +206,22 @@ if ($post && $action === 'password') {
 
 // ---------- Angemeldet: Übersicht ----------
 $prices = get_prices();
+$abo = get_abo();
 $saved = data_read('prices');
 $fields = '';
 foreach (PACKAGES as $key => $label) {
-    $fields .= '<label>' . h($label) . '<span class="euro"><input name="' . $key . '" value="' . (int) $prices[$key] . '" inputmode="numeric" pattern="[0-9.]*" required></span></label>';
+    $a = $abo[$key];
+    $yearly = abo_yearly($a);
+    $fields .= '<fieldset class="pkg"><legend>' . h($label) . '</legend>'
+        . '<label>Kaufpreis (einmalig)<span class="euro"><input name="' . $key . '" value="' . (int) $prices[$key] . '" inputmode="numeric" pattern="[0-9.]*" required></span></label>'
+        . '<p class="sub">Abo</p>'
+        . '<label>Monatlich<span class="euro small"><input name="abo_' . $key . '_monthly" value="' . money($a['monthly']) . '" inputmode="decimal" pattern="[0-9]+([,.][0-9]{1,2})?" required></span></label>'
+        . '<label>Einrichtung (einmalig)<span class="euro small"><input name="abo_' . $key . '_setup" value="' . money($a['setup']) . '" inputmode="decimal" pattern="[0-9]+([,.][0-9]{1,2})?" required></span></label>'
+        . '<div class="two"><label>Laufzeit<span class="unit" data-unit="Monate"><input name="abo_' . $key . '_term" value="' . $a['term'] . '" inputmode="numeric" pattern="[0-9]{1,2}" required></span></label>'
+        . '<label>Rabatt bei jährlicher Zahlung<span class="unit" data-unit="%"><input name="abo_' . $key . '_discount" value="' . $a['discount'] . '" inputmode="numeric" pattern="[0-9]{1,2}" required></span></label></div>'
+        . '<p class="calc">Jährlich: <strong>' . money($yearly) . ' €</strong> (ohne Einrichtung)<br>'
+        . 'Monatlich gesamt ' . $a['term'] . ' Mon.: ' . money($a['monthly'] * $a['term'] + $a['setup']) . ' €</p>'
+        . '</fieldset>';
 }
 $stand = $saved && isset($saved['updated'])
     ? 'Zuletzt geändert am ' . date('d.m.Y \u\m H:i', strtotime($saved['updated'])) . ' Uhr.'
@@ -199,7 +229,7 @@ $stand = $saved && isset($saved['updated'])
 
 page('Preise', '
 <h1>Hallo ' . h($user['username']) . '!</h1>
-<p class="lead">Ändere hier die Preise deiner drei Pakete. Sie werden überall auf der Website übernommen.</p>
+<p class="lead">Ändere hier Kaufpreise und Abo-Konditionen deiner drei Pakete. Sie werden überall auf der Website übernommen.</p>
 <div class="card">
   <h2>Paketpreise</h2>
   <form method="post" action="./?a=prices">' . csrf_field() . '

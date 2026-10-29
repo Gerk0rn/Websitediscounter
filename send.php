@@ -36,6 +36,7 @@ $email   = filter_var(einzeilig($daten['email'] ?? '', 150), FILTER_VALIDATE_EMA
 $telefon = einzeilig($daten['telefon'] ?? '', 50);
 $firma   = einzeilig($daten['firma'] ?? '', 150);
 $paket   = einzeilig($daten['paket'] ?? '', 100);
+$zahlweise = einzeilig($daten['zahlweise'] ?? '', 300);
 $antworten = mb_substr(trim((string) ($daten['antworten'] ?? '')), 0, 2000);
 $nachricht = mb_substr(trim((string) ($daten['nachricht'] ?? '')), 0, 3000);
 
@@ -44,7 +45,8 @@ if ($name === '' || !$email || $paket === '') {
 }
 
 $text = "Neue Anfrage über den Website Discounter\n\n"
-      . "Paket: $paket\n\n"
+      . "Paket: $paket\n"
+      . "Zahlweise: " . ($zahlweise !== '' ? $zahlweise : '–') . "\n\n"
       . "Name: $name\n"
       . "E-Mail: $email\n"
       . "Telefon: " . ($telefon !== '' ? $telefon : '–') . "\n"
