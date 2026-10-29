@@ -54,8 +54,7 @@ invertierendem Hover. Hero, Designbeispiele-Sektion, Kontakt und Footer schwarz.
 
 Nie erfundene Projekte als echte Referenzen ausgeben (irreführende Werbung).
 Aktuell: **Thai Yoga Massage** (Start, Referenz, Telefonnummer im Screenshot verpixelt, nicht verlinkt),
-**Sportsfreund** (Business, Referenz, Personal Trainer Pascal Stempfle – Daten dürfen sichtbar sein),
-**Rotberg Bau** (Business, **Demo-Projekt** mit Musterdaten).
+**Sportsfreund** (Business, Referenz, Personal Trainer Pascal Stempfle – Daten dürfen sichtbar sein).
 
 ## Recht & Datenschutz
 
