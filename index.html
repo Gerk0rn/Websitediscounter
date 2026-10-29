@@ -181,8 +181,10 @@ form .btn{width:100%}
 .ex:hover .ex-page{transform:translateY(calc(-100% + 300px))}
 .hint-touch{display:none}
 @media(hover:none){.ex-page{animation:exScroll 16s ease-in-out infinite alternate}.hint-hover{display:none}.hint-touch{display:inline}}
+@media(hover:none){.ex-page.shot{animation-duration:24s}}
 @keyframes exScroll{0%,12%{transform:none}88%,100%{transform:translateY(calc(-100% + 300px))}}
-.ex-page img{display:none}
+.ex-page.shot{transition-duration:6s}
+.ex-page.shot img{display:block;width:100%;height:auto}
 /* gemeinsame Mini-Bausteine */
 .m-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 14px}
 .m-links{display:flex;gap:9px;color:#666;font-size:8.5px}
@@ -200,12 +202,6 @@ form .btn{width:100%}
 .m-map{height:70px;background:#eee;background-image:linear-gradient(#ddd 1px,transparent 1px),linear-gradient(90deg,#ddd 1px,transparent 1px);background-size:14px 14px;position:relative}
 .m-map:after{content:"";position:absolute;left:48%;top:35%;width:10px;height:10px;background:#111;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
 .m-field{border:1px solid #ccc;height:16px;margin-bottom:5px}
-/* Salon (Start) */
-.s1{font-family:Georgia,"Times New Roman",serif}
-.s1 .m-nav b{font-size:13px;letter-spacing:.18em}
-.s1 .hero1{height:190px;background:radial-gradient(ellipse at 78% 22%,rgba(255,255,255,.55),transparent 45%),linear-gradient(135deg,#9a9a9a,#3a3a3a);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
-.s1 .hero1 strong{font-size:22px;font-weight:400;line-height:1.1;margin-bottom:10px}
-.s1 .m-h{font-weight:400;font-size:15px}
 /* Tischlerei (Business) */
 .s2{font-family:-apple-system,"Segoe UI",Arial,sans-serif}
 .s2 .hero2{display:grid;grid-template-columns:1.1fr 1fr;gap:10px;padding:10px 14px 14px;align-items:center}
@@ -651,35 +647,21 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     <div class="wrap">
       <div class="ex-head">
         <div>
-          <span class="label" style="color:#999" data-r>Designbeispiele</span>
+          <span class="label" style="color:#999" data-r>Referenzen &amp; Beispiele</span>
           <h2 data-r="clip" style="margin:0">So könnte deine<br>Website aussehen.</h2>
         </div>
-        <p class="ex-intro" data-r>Drei Beispiele – eins pro Paket. <span class="hint-hover">Fahr mit der Maus über ein Beispiel, um durch die Seite zu scrollen.</span><span class="hint-touch">Die Beispiele scrollen automatisch durch die Seite.</span></p>
+        <p class="ex-intro" data-r>Eine Referenz und zwei Designbeispiele – eins pro Paket. <span class="hint-hover">Fahr mit der Maus über ein Beispiel, um durch die Seite zu scrollen.</span><span class="hint-touch">Die Beispiele scrollen automatisch durch die Seite.</span></p>
       </div>
       <div class="ex-grid" data-stagger>
 
         <article class="ex">
-          <div class="ex-frame" aria-hidden="true">
-            <div class="ex-bar"><i></i><i></i><i></i><span>salon-linde.beispiel</span></div>
-            <div class="ex-view"><div class="ex-page s1">
-              <div class="m-nav"><b>SALON LINDE</b><span class="m-btn">Termin</span></div>
-              <div class="hero1"><strong>Schnitt.<br>Farbe.<br>Stil.</strong><span><span class="m-btn l">Jetzt anrufen</span></span></div>
-              <div class="m-sec"><p class="m-h">Leistungen</p>
-                <div class="m-row"><span>Damenschnitt</span><span>ab 39 €</span></div>
-                <div class="m-row"><span>Herrenschnitt</span><span>25 €</span></div>
-                <div class="m-row"><span>Farbe &amp; Strähnen</span><span>ab 49 €</span></div>
-                <div class="m-row"><span>Hochsteckfrisur</span><span>ab 59 €</span></div></div>
-              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Öffnungszeiten</p>
-                <div class="m-row"><span>Di – Fr</span><span>9 – 18 Uhr</span></div>
-                <div class="m-row"><span>Sa</span><span>8 – 13 Uhr</span></div></div>
-              <div class="m-sec"><p class="m-h">So findest du uns</p><div class="m-map"></div></div>
-              <div class="m-sec"><p class="m-h">Schreib uns</p><div class="m-field"></div><div class="m-field"></div><span class="m-btn">Senden</span></div>
-              <div class="m-foot"><span>© Salon Linde</span><span>Impressum · Datenschutz</span></div>
-            </div></div>
+          <div class="ex-frame">
+            <div class="ex-bar"><i></i><i></i><i></i><span>Thai Yoga Massage by Maggy Bartels</span></div>
+            <div class="ex-view"><div class="ex-page shot"><img src="img/referenz-thai-yoga-massage.jpg" alt="Website Thai Yoga Massage by Maggy Bartels – One-Pager mit Angebot, Preisen und Terminanfrage" width="800" height="2582" loading="lazy"></div></div>
           </div>
-          <div class="ex-meta"><span class="ex-tag">Paket Start</span><span class="ex-tag ghost">Designbeispiel</span></div>
-          <h3>Salon Linde</h3>
-          <p>Friseursalon – kompakter Auftritt mit Leistungen, Öffnungszeiten, Karte und Kontaktformular.</p>
+          <div class="ex-meta"><span class="ex-tag">Paket Start</span><span class="ex-tag">Referenz</span></div>
+          <h3>Thai Yoga Massage</h3>
+          <p>Maggy Bartels – One-Pager mit Angebot, Preisen, Über mich und Formular zur Terminanfrage.</p>
         </article>
 
         <article class="ex">
@@ -728,7 +710,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         </article>
 
       </div>
-      <p class="ex-intro" style="margin-top:32px;font-size:.85rem">Alle Beispiele sind frei erfundene Designentwürfe und zeigen, was in den jeweiligen Paketen möglich ist.</p>
+      <p class="ex-intro" style="margin-top:32px;font-size:.85rem">„Holzwerk Nord“ und „Hotel Seeblick“ sind frei erfundene Designentwürfe und zeigen, was in den jeweiligen Paketen möglich ist.</p>
     </div>
   </section>
 
