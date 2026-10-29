@@ -128,6 +128,18 @@ form .btn{width:100%}
 .abo-hint{color:#aaa;font-size:.95rem;margin:18px 0 0}
 .abo-hint strong{color:#fff}
 
+.abo-info{border:2px solid #000;border-top:0;padding:28px;display:grid;grid-template-columns:.7fr 1.3fr;gap:32px;background:#f2f2f2}
+.abo-info h3{font-size:1.5rem;margin:0}
+.abo-info ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);grid-auto-flow:column;gap:0 28px}
+.abo-info li{border-top:1px solid #ccc;padding:9px 0 9px 26px;position:relative;font-size:.95rem}
+.abo-info li:before{content:"✓";position:absolute;left:0;font-weight:800}
+.abo-info li.no:before{content:"–"}
+.tax{font-size:.85rem;color:#555;margin:16px 0 0}
+.terms{max-width:460px;margin:12px auto 0;text-align:left;font-size:.88rem;color:#555;list-style:none;padding:0}
+.terms li{padding:3px 0 3px 22px;position:relative}
+.terms li:before{content:"✓";position:absolute;left:0;font-weight:800;color:#000}
+.terms li.no:before{content:"–"}
+
 /* Pakete */
 .packs{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid #000;margin-top:40px}
 .pack{padding:32px 28px;display:flex;flex-direction:column}
@@ -200,7 +212,8 @@ footer nav a:hover{text-decoration:underline}
   .art{max-width:440px}
   .packs{grid-template-columns:1fr}
   .pack+.pack{border-left:0;border-top:2px solid #000}
-  .steps,.facts,.faq-grid{grid-template-columns:1fr}
+  .steps,.facts,.faq-grid,.abo-info,.abo-info ul{grid-template-columns:1fr}
+  .abo-info ul{grid-auto-flow:row;grid-template-rows:none}
   .faq-grid{gap:24px}
   .about{grid-template-columns:1fr;gap:56px}
   .me{max-width:420px}
@@ -305,7 +318,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
    "name": "Kommen nach dem Projekt laufende Kosten auf mich zu?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Der Paketpreis ist ein einmaliger Festpreis für die Erstellung deiner Website. Für den Betrieb fallen in der Regel noch Kosten für Domain (deine Internetadresse) und Hosting (den Speicherplatz im Netz) an – je nach Anbieter und Umfang meist ein überschaubarer monatlicher Betrag. Diese Punkte besprechen wir nach dem Projekt ganz transparent miteinander. Du entscheidest dann, welche Lösung zu dir passt – versteckte Kosten gibt es nicht."
+    "text": "Beim Einmalkauf ist der Paketpreis ein einmaliger Festpreis für die Erstellung deiner Website. Für den Betrieb fallen in der Regel noch Kosten für Domain (deine Internetadresse) und Hosting (den Speicherplatz im Netz) an – je nach Anbieter und Umfang meist ein überschaubarer monatlicher Betrag. Das gilt auch beim Abo, denn Hosting ist dort nicht enthalten. Diese Punkte besprechen wir nach dem Projekt ganz transparent miteinander. Du entscheidest dann, welche Lösung zu dir passt – versteckte Kosten gibt es nicht. Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet."
    }
   },
   {
@@ -313,7 +326,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
    "name": "Kann ich meine Website auch im Abo bekommen?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Ja. Statt des einmaligen Festpreises kannst du jedes Paket auch im Abo buchen: Du zahlst einen festen monatlichen Beitrag und einmalig eine Einrichtungsgebühr. Die Mindestlaufzeit beträgt aktuell 12 Monate. Entscheidest du dich für die jährliche Zahlung, sparst du zusätzlich und die Einrichtungsgebühr entfällt komplett. Die aktuellen Abo-Preise siehst du oben bei den Paketen – stell einfach den Schalter auf „Abo monatlich“ oder „Abo jährlich“. Im Preisrechner bekommst du außerdem den Gesamtpreis für die Laufzeit angezeigt."
+    "text": "Ja. Statt des einmaligen Festpreises kannst du jedes Paket auch im Abo buchen: Du zahlst einen festen monatlichen Beitrag und einmalig eine Einrichtungsgebühr. Entscheidest du dich für die jährliche Zahlung, sparst du zusätzlich und die Einrichtungsgebühr entfällt komplett. Im Abo sind die laufende Pflege deiner Website und bis zu zwei kleinere Änderungen pro Monat enthalten. Größere Änderungen berechne ich nach Aufwand. Hosting ist nicht enthalten. Die Mindestlaufzeit beträgt aktuell 12 Monate. Danach verlängert sich das Abo automatisch um jeweils einen Monat, wenn du nicht kündigst – die Kündigungsfrist beträgt einen Monat. Nach Ende des Abos sind keine Änderungen mehr enthalten."
    }
   },
   {
@@ -501,6 +514,12 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
           <p style="color:#555;margin:6px 0 0" id="rNote">einmaliger Festpreis</p>
           <div class="costs" id="rCosts" hidden></div>
           <div id="rSave"></div>
+          <ul class="terms" id="rTerms" hidden>
+            <li>Größere Änderungen nach Aufwand</li>
+            <li>Mindestlaufzeit <span data-abo-term>12 Monate</span>, danach automatische Verlängerung um jeweils einen Monat, Kündigungsfrist ein Monat</li>
+            <li class="no">Hosting nicht enthalten</li>
+          </ul>
+          <p class="tax" style="margin:10px 0 0">Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
           <ul id="rList"></ul>
           <p style="color:#555;font-size:.9rem;margin:0">Lieber ein anderes Paket?</p>
           <div class="switch" id="switch"></div>
@@ -543,6 +562,23 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         </div>
       </div>
       <div class="packs" id="packs" data-stagger></div>
+      <div class="abo-info" id="aboInfo" hidden>
+        <div>
+          <span class="label" style="margin-bottom:8px">Abo</span>
+          <h3>So funktioniert das Abo.</h3>
+        </div>
+        <ul>
+          <li>Laufende Pflege deiner Website inklusive</li>
+          <li>Bis zu 2 kleinere Änderungen pro Monat inklusive</li>
+          <li>Größere Änderungen nach Aufwand</li>
+          <li>Mindestlaufzeit <span data-abo-term>12 Monate</span></li>
+          <li>Danach verlängert sich das Abo automatisch um jeweils einen Monat</li>
+          <li>Kündigungsfrist: ein Monat</li>
+          <li class="no">Hosting ist nicht enthalten</li>
+          <li class="no">Nach Ende des Abos sind keine Änderungen mehr enthalten</li>
+        </ul>
+      </div>
+      <p class="tax">Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
     </div>
   </section>
 
@@ -605,11 +641,11 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         </details>
         <details>
           <summary>Kommen nach dem Projekt laufende Kosten auf mich zu?</summary>
-          <div class="a"><p>Der Paketpreis ist ein einmaliger Festpreis für die Erstellung deiner Website. Für den Betrieb fallen in der Regel noch Kosten für Domain (deine Internetadresse) und Hosting (den Speicherplatz im Netz) an – je nach Anbieter und Umfang meist ein überschaubarer monatlicher Betrag.</p><p>Diese Punkte besprechen wir nach dem Projekt ganz transparent miteinander. Du entscheidest dann, welche Lösung zu dir passt – versteckte Kosten gibt es nicht.</p></div>
+          <div class="a"><p>Beim Einmalkauf ist der Paketpreis ein einmaliger Festpreis für die Erstellung deiner Website. Für den Betrieb fallen in der Regel noch Kosten für Domain (deine Internetadresse) und Hosting (den Speicherplatz im Netz) an – je nach Anbieter und Umfang meist ein überschaubarer monatlicher Betrag. Das gilt auch beim Abo, denn Hosting ist dort nicht enthalten.</p><p>Diese Punkte besprechen wir nach dem Projekt ganz transparent miteinander. Du entscheidest dann, welche Lösung zu dir passt – versteckte Kosten gibt es nicht. Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p></div>
         </details>
         <details>
           <summary>Kann ich meine Website auch im Abo bekommen?</summary>
-          <div class="a"><p>Ja. Statt des einmaligen Festpreises kannst du jedes Paket auch im Abo buchen: Du zahlst einen festen monatlichen Beitrag und einmalig eine Einrichtungsgebühr. Die Mindestlaufzeit beträgt aktuell 12 Monate.</p><p>Entscheidest du dich für die jährliche Zahlung, sparst du zusätzlich und die Einrichtungsgebühr entfällt komplett. Die aktuellen Abo-Preise siehst du oben bei den Paketen – stell einfach den Schalter auf „Abo monatlich“ oder „Abo jährlich“. Im Preisrechner bekommst du außerdem den Gesamtpreis für die Laufzeit angezeigt.</p></div>
+          <div class="a"><p>Ja. Statt des einmaligen Festpreises kannst du jedes Paket auch im Abo buchen: Du zahlst einen festen monatlichen Beitrag und einmalig eine Einrichtungsgebühr. Entscheidest du dich für die jährliche Zahlung, sparst du zusätzlich und die Einrichtungsgebühr entfällt komplett.</p><p>Im Abo sind die laufende Pflege deiner Website und bis zu zwei kleinere Änderungen pro Monat enthalten. Größere Änderungen berechne ich nach Aufwand. Hosting ist nicht enthalten.</p><p>Die Mindestlaufzeit beträgt aktuell 12 Monate. Danach verlängert sich das Abo automatisch um jeweils einen Monat, wenn du nicht kündigst – die Kündigungsfrist beträgt einen Monat. Nach Ende des Abos sind keine Änderungen mehr enthalten.</p></div>
         </details>
         <details>
           <summary>Wie lange dauert es, bis meine Website online ist?</summary>
@@ -716,6 +752,10 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     if (x.cents != null) { el.dataset.dec = "1"; el.dataset.to = x.cents; el.textContent = money(x.cents); }
     else { delete el.dataset.dec; el.dataset.to = x.euro; el.textContent = euro(x.euro); }
   }
+  // Im Abo zusätzlich enthalten (bei allen Paketen gleich)
+  var ABO_EXTRA = ["Pflege inklusive", "Bis zu 2 kleinere Änderungen pro Monat"];
+  function listFor(p) { return mode === "kauf" ? p.list : ABO_EXTRA.concat(p.list); }
+
   function maxDiscount() { return Math.max.apply(null, PACKS.map(function (p) { return p.abo.d; })); }
 
   function buildModes(box) {
@@ -794,16 +834,21 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     }
     $("rCosts").innerHTML = costs;
     $("rCosts").hidden = !costs;
+    $("rTerms").hidden = mode === "kauf";
     $("rSave").innerHTML = mode === "jahr" && c.save > 0 ? '<span class="save">Du sparst ' + money(c.save) + " € gegenüber monatlicher Zahlung</span>" : "";
     $("rList").innerHTML = "";
-    p.list.forEach(function (t) { $("rList").appendChild(li(t)); });
+    listFor(p).forEach(function (t) { $("rList").appendChild(li(t)); });
     all("#switch button").forEach(function (b) { b.classList.toggle("on", PACKS[b.dataset.i] === p); });
   }
 
   // Alles, was Preise zeigt, auf Zahlweise und aktuelle Preise bringen
   function renderPrices() {
     all("[data-price]").forEach(function (el) { el.textContent = euro(PACKS[el.getAttribute("data-price")].price); });
-    var minAbo = Math.min.apply(null, PACKS.map(function (p) { return p.abo.m; }));
+    var minAbo = Math.min.apply(null, PACKS.map(function (p) { return p.abo.m; })),
+        terms = PACKS.map(function (p) { return p.abo.t; }),
+        sameTerm = terms.every(function (t) { return t === terms[0]; });
+    all("[data-abo-term]").forEach(function (el) { el.textContent = sameTerm ? terms[0] + " Monate" : "je nach Paket"; });
+    $("aboInfo").hidden = mode === "kauf";
     all("[data-abo-min]").forEach(function (el) { el.textContent = money(minAbo); });
     PACKS.forEach(function (p) {
       if (!p.card) return;
@@ -811,6 +856,9 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
       setPriceEl(p.card.querySelector(".pv"), x);
       p.card.querySelector(".per").textContent = x.unit ? " " + x.unit : "";
       p.card.querySelector(".pnote").textContent = x.note;
+      var ul = p.card.querySelector("ul");
+      ul.innerHTML = "";
+      listFor(p).forEach(function (t) { ul.appendChild(li(t)); });
     });
     all("#switch button").forEach(function (b) { var p = PACKS[b.dataset.i]; b.textContent = p.name + " · " + shortPrice(p, mode); });
     all(".modes").forEach(buildModes);
@@ -862,9 +910,12 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     if (mode === "jahr") return "Abo jährlich: " + money(c.yearly) + " € / Jahr (−" + a.d + " %), keine Einrichtungskosten, Mindestlaufzeit " + a.t + " Monate, gesamt " + money(c.yearTotal) + " € für " + a.t + " Monate";
     return "Einmalkauf: " + euro(chosen.price) + " € Festpreis";
   }
+  function zahlweiseText() {
+    return zahlweise() + (mode === "kauf" ? "" : " – danach monatliche Verlängerung, Kündigungsfrist 1 Monat; inkl. Pflege und bis zu 2 kleinere Änderungen pro Monat");
+  }
 
   function mailto(d) {
-    var body = "Paket: " + chosen.name + "\nZahlweise: " + zahlweise() + "\n\nName: " + d.name + "\nE-Mail: " + d.email +
+    var body = "Paket: " + chosen.name + "\nZahlweise: " + zahlweiseText() + "\n\nName: " + d.name + "\nE-Mail: " + d.email +
       "\nTelefon: " + (d.telefon || "–") + "\nFirma: " + (d.firma || "–") + "\n\n" + answers() + "\n\nNachricht:\n" + (d.nachricht || "–");
     location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Website-Anfrage: " + chosen.name) + "&body=" + encodeURIComponent(body);
   }
@@ -882,7 +933,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     fetch("send.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ paket: chosen.name, zahlweise: zahlweise(), name: d.name, email: d.email, telefon: d.telefon,
+      body: JSON.stringify({ paket: chosen.name, zahlweise: zahlweiseText(), name: d.name, email: d.email, telefon: d.telefon,
         firma: d.firma, nachricht: d.nachricht, antworten: answers(), website: d.website })
     })
       .then(function (r) { return r.json(); })
