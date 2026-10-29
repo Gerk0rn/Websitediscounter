@@ -202,16 +202,6 @@ form .btn{width:100%}
 .m-map{height:70px;background:#eee;background-image:linear-gradient(#ddd 1px,transparent 1px),linear-gradient(90deg,#ddd 1px,transparent 1px);background-size:14px 14px;position:relative}
 .m-map:after{content:"";position:absolute;left:48%;top:35%;width:10px;height:10px;background:#111;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
 .m-field{border:1px solid #ccc;height:16px;margin-bottom:5px}
-/* Hotel (Premium) */
-.s3{font-family:-apple-system,"Segoe UI",Arial,sans-serif}
-.s3 .top{display:flex;justify-content:flex-end;gap:8px;background:#111;color:#bbb;padding:4px 14px;font-size:8px}
-.s3 .top b{color:#fff}
-.s3 .hero3{height:200px;position:relative;color:#fff;padding:18px 14px;background:linear-gradient(#b9b9b9 0 45%,transparent 45%),linear-gradient(170deg,transparent 52%,#5b5b5b 52%),linear-gradient(#cfcfcf,#cfcfcf)}
-.s3 .hero3:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.55))}
-.s3 .hero3 strong{position:relative;display:block;font-size:20px;letter-spacing:-.02em;margin-top:70px}
-.s3 .book{position:relative;margin:-22px 14px 0;background:#fff;border:1px solid #ccc;display:grid;grid-template-columns:repeat(3,1fr) auto;gap:6px;padding:7px;align-items:center;font-size:8px;color:#666}
-.s3 .book div{border-right:1px solid #e5e5e5}
-.s3 .room{height:52px;margin-bottom:5px}
 
 /* Über mich */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:88px;align-items:center}
@@ -642,7 +632,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
           <span class="label" style="color:#999" data-r>Referenzen &amp; Beispiele</span>
           <h2 data-r="clip" style="margin:0">So könnte deine<br>Website aussehen.</h2>
         </div>
-        <p class="ex-intro" data-r>Eine Referenz, ein Demo-Projekt und ein Designbeispiel – eins pro Paket. <span class="hint-hover">Fahr mit der Maus über ein Beispiel, um durch die Seite zu scrollen.</span><span class="hint-touch">Die Beispiele scrollen automatisch durch die Seite.</span></p>
+        <p class="ex-intro" data-r>Zwei Referenzen aus Kundenprojekten und ein Demo-Projekt. <span class="hint-hover">Fahr mit der Maus über ein Beispiel, um durch die Seite zu scrollen.</span><span class="hint-touch">Die Beispiele scrollen automatisch durch die Seite.</span></p>
       </div>
       <div class="ex-grid" data-stagger>
 
@@ -658,6 +648,16 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
 
         <article class="ex">
           <div class="ex-frame">
+            <div class="ex-bar"><i></i><i></i><i></i><span>Sportsfreund – Personal Training</span></div>
+            <div class="ex-view"><div class="ex-page shot" style="transition-duration:9s"><img src="img/referenz-sportsfreund.jpg" alt="Website Sportsfreund – Personal Trainer mit Kundenstimmen, Über mich, Personal Training, Firmenfitness und Probestunde" width="281" height="2000" loading="lazy"></div></div>
+          </div>
+          <div class="ex-meta"><span class="ex-tag">Paket Business</span><span class="ex-tag">Referenz</span></div>
+          <h3>Sportsfreund</h3>
+          <p>Personal Trainer – Kundenstimmen, Über mich, Personal Training, betriebliche Gesundheitsförderung, Firmenkunden und Probestunden-Anfrage.</p>
+        </article>
+
+        <article class="ex">
+          <div class="ex-frame">
             <div class="ex-bar"><i></i><i></i><i></i><span>Rotberg Bau</span></div>
             <div class="ex-view"><div class="ex-page shot" style="transition-duration:9s"><img src="img/referenz-rotberg-bau.jpg" alt="Website Rotberg Bau – Bauunternehmen mit Leistungen, Projekten, Kundenstimmen, Karriere und Anfrageformular" width="800" height="4661" loading="lazy"></div></div>
           </div>
@@ -665,32 +665,8 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
           <h3>Rotberg Bau</h3>
           <p>Bauunternehmen – Leistungsübersicht, Projekt-Galerie mit Filter, Kundenstimmen, Karriere und ausführliches Anfrageformular.</p>
         </article>
-
-        <article class="ex">
-          <div class="ex-frame" aria-hidden="true">
-            <div class="ex-bar"><i></i><i></i><i></i><span>hotel-seeblick.beispiel</span></div>
-            <div class="ex-view"><div class="ex-page s3">
-              <div class="top"><b>DE</b><span>EN</span><span>NL</span></div>
-              <div class="m-nav"><b style="font-size:12px;letter-spacing:.08em">SEEBLICK</b><div class="m-links"><span>Zimmer</span><span>Spa</span><span>Restaurant</span><span>Lage</span></div></div>
-              <div class="hero3"><strong>Ankommen.<br>Durchatmen.</strong></div>
-              <div class="book"><div>Anreise<br><b style="color:#111">12.06.</b></div><div>Abreise<br><b style="color:#111">15.06.</b></div><div>Gäste<br><b style="color:#111">2</b></div><span class="m-btn">Verfügbarkeit</span></div>
-              <div class="m-sec"><p class="m-h">Unsere Zimmer</p><div class="m-grid">
-                <div><div class="m-img room"></div><b>Doppelzimmer</b><br>ab 119 €</div>
-                <div><div class="m-img room" style="filter:brightness(1.12)"></div><b>Suite</b><br>ab 189 €</div>
-                <div><div class="m-img room" style="filter:brightness(.88)"></div><b>Familie</b><br>ab 159 €</div></div></div>
-              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Wellness &amp; Spa</p><div class="m-img" style="height:70px"></div></div>
-              <div class="m-sec"><p class="m-h">Tisch reservieren</p><div class="m-grid"><div class="m-field"></div><div class="m-field"></div><div class="m-field"></div></div><span class="m-btn">Reservieren</span></div>
-              <div class="m-sec" style="background:#f3f3f3"><p class="m-h">Anreise</p><div class="m-map"></div></div>
-              <div class="m-foot"><span>© Hotel Seeblick</span><span>Impressum · Datenschutz</span></div>
-            </div></div>
-          </div>
-          <div class="ex-meta"><span class="ex-tag">Paket Premium</span><span class="ex-tag ghost">Designbeispiel</span></div>
-          <h3>Hotel Seeblick</h3>
-          <p>Hotel – großer Auftritt mit Online-Buchung, Mehrsprachigkeit, Zimmerübersicht und Tischreservierung.</p>
-        </article>
-
       </div>
-      <p class="ex-intro" style="margin-top:32px;font-size:.85rem">„Rotberg Bau“ ist ein Demo-Projekt mit Musterdaten, „Hotel Seeblick“ ein frei erfundener Designentwurf – beide zeigen, was in den jeweiligen Paketen möglich ist.</p>
+      <p class="ex-intro" style="margin-top:32px;font-size:.85rem">„Rotberg Bau“ ist ein Demo-Projekt mit Musterdaten und zeigt, was im Business-Paket möglich ist.</p>
     </div>
   </section>
 
