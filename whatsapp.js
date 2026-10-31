@@ -6,14 +6,14 @@
 
   var css = '' +
     '.wa{position:fixed;right:20px;bottom:20px;z-index:90;display:flex;align-items:center;gap:10px;text-decoration:none;color:#000;font:700 14px/1 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif}' +
-    '.wa-icon{position:relative;width:58px;height:58px;border-radius:50%;background:#000;border:2px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.25);display:grid;place-items:center;transition:transform .25s cubic-bezier(.2,.8,.2,1)}' +
+    '.wa-icon{position:relative;width:58px;height:58px;border-radius:50%;background:#25D366;border:2px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.25);display:grid;place-items:center;transition:transform .25s cubic-bezier(.2,.8,.2,1)}' +
     '.wa-icon svg{width:30px;height:30px;fill:#fff}' +
-    '.wa-icon:before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #000;animation:waPulse 2.6s ease-out infinite}' +
+    '.wa-icon:before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #25D366;animation:waPulse 2.6s ease-out infinite}' +
     '@keyframes waPulse{0%{transform:scale(1);opacity:.6}80%,100%{transform:scale(1.55);opacity:0}}' +
     '.wa-label{background:#fff;border:2px solid #000;padding:10px 14px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .25s,transform .25s;pointer-events:none}' +
     '.wa:hover .wa-icon,.wa:focus-visible .wa-icon{transform:scale(1.08)}' +
     '.wa:hover .wa-label,.wa:focus-visible .wa-label{opacity:1;transform:none}' +
-    '.wa:focus-visible{outline:none}.wa:focus-visible .wa-icon{outline:3px solid #000;outline-offset:3px}' +
+    '.wa:focus-visible{outline:none}.wa:focus-visible .wa-icon{outline:3px solid #25D366;outline-offset:3px}' +
     '@media(max-width:600px){.wa{right:14px;bottom:14px}.wa-icon{width:54px;height:54px}.wa-label{display:none}footer{padding-bottom:84px!important}}' +
     '@media(prefers-reduced-motion:reduce){.wa-icon:before{animation:none;display:none}.wa-icon,.wa-label{transition:none}}' +
     '@media print{.wa{display:none}}';
