@@ -58,7 +58,7 @@ Aktuell nur: **Sportsfreund** (Business, Referenz, Personal Trainer Pascal Stemp
 ## Recht & Datenschutz
 
 - Firmendaten: Gerken Medien – Kreativagentur für Medien, Inhaber Dennis Gerken,
-  August-Wegmann-Str. 2, 49413 Dinklage, Telefon +49 152 219 50840, info@grkn.net, www.grkn.net,
+  August-Wegmann-Str. 2, 49413 Dinklage, Telefon +49 4443 6362962 (WhatsApp weiterhin mobil: +49 152 219 50840), info@grkn.net, www.grkn.net,
   W-IdNr. DE430947120-00001. Hosting: STRATO.
 - Datenschutz enthält: Hosting/Logfiles, Anfrageformular, Cookies/Einwilligung (TDDDG), Meta-Pixel
   (Art. 26 DSGVO, Drittland), E-Mail/Telefon, **WhatsApp Business** (ohne Adressbuchzugriff – nur so
