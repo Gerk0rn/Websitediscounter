@@ -779,6 +779,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
 <script>
 (function () {
   var MAIL = "info@grkn.net";
+  var geladen = Date.now(); // für den Spamschutz: Ausfüllzeit des Formulars
   var PACKS = [
     { key: "start", name: "Start", price: 500, abo: { m: 3999, s: 9999, t: 12, d: 20 }, for: "Für Selbstständige, Vereine und den schnellen Start",
       list: ["Bis zu 3 Seiten", "Modernes Design, perfekt auf dem Handy", "Kontaktformular & Google Maps", "Impressum & Datenschutz eingebunden", "Online in 1–2 Wochen"] },
@@ -1001,7 +1002,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     fetch("send.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ paket: chosen.name, zahlweise: zahlweiseText(), name: d.name, email: d.email, telefon: d.telefon,
+      body: JSON.stringify({ paket: chosen.name, zahlweise: zahlweiseText(), dauer: Date.now() - geladen, name: d.name, email: d.email, telefon: d.telefon,
         firma: d.firma, nachricht: d.nachricht, antworten: answers(), website: d.website })
     })
       .then(function (r) { return r.json(); })

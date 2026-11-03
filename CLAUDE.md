@@ -65,6 +65,19 @@ Aktuell nur: **Sportsfreund** (Business, Referenz, Personal Trainer Pascal Stemp
   lassen, solange das stimmt).
 - Bei neuen Tracking-/Drittanbieter-Diensten immer Datenschutzerklärung und Cookie-Banner anpassen.
 
+## Sicherheit
+
+- `.htaccess` (Wurzel von `/wd/`): HTTPS-Zwang, Sicherheits-Header (HSTS, CSP, X-Frame-Options,
+  nosniff, Referrer-, Permissions-Policy), keine Verzeichnislisten, versteckte Dateien und `*.md`
+  gesperrt. CSP erlaubt nur eigene Dateien + `connect.facebook.net`/`www.facebook.com` (Meta-Pixel).
+  **Neue externe Dienste müssen in die CSP**, sonst blockiert der Browser sie.
+- `send.php` Spamschutz: Herkunft (Origin/Referer = eigener Host), JSON-only, ≤ 20 KB, Honeypot,
+  Mindest-Ausfüllzeit 3 s (`dauer` aus index.html), max. 3 Anfragen/10 min und 10/Tag pro
+  IP-Hash (`data/spam-limit.php`, 24 h), Link-/BBCode-Filter, Doppel-Sperre 10 min.
+- Admin: CSRF-Token, Login-Sperre nach 5 Fehlversuchen, Passwort-Hash, Session-Cookie HttpOnly/SameSite.
+- Testen: Apache lokal (`apt-get install apache2 libapache2-mod-php`, `a2enmod headers rewrite`,
+  AllowOverride All, Kopie unter `/var/www`), HTTPS per Header `X-Forwarded-Proto: https` simulieren.
+
 ## Testen
 
 Lokal: `php -S 127.0.0.1:8000` im Projektordner; Mailversand mit

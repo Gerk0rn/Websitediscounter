@@ -1,0 +1,38 @@
+# Sicherheitseinstellungen für den Website Discounter (/wd/)
+# Alle Blöcke sind mit <IfModule> abgesichert: fehlt ein Modul, bleibt die Seite erreichbar.
+
+# Keine Verzeichnislisten, keine Server-Signatur
+Options -Indexes
+ServerSignature Off
+
+# Immer HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Versteckte Dateien und Ordner (.git, .env, …) sperren – außer .well-known
+  RewriteRule (^|/)\.(?!well-known/) - [F,L]
+</IfModule>
+
+# Projekt- und Hilfsdateien nicht ausliefern
+<FilesMatch "(?i)(^README\.md$|^CLAUDE\.md$|\.(md|log|bak|old|orig|swp|sql|sh|ini|json\.dist|lock|yml|yaml)$)">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  # Browser-Schutz
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  # Erlaubt nur eigene Dateien plus das Meta-Pixel (lädt erst nach Einwilligung)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; connect-src 'self' https://www.facebook.com https://connect.facebook.net; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+
+  # Technische Details nicht verraten
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+</IfModule>
