@@ -306,10 +306,6 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
 .i1{animation-delay:.35s}.i2{animation-delay:.5s}.i3{animation-delay:.65s}.i4{animation-delay:.8s}.i5{animation-delay:.5s}
 .art,.hero .wrap>div:first-child{will-change:transform}
 
-.marquee{background:#000;color:#fff;border-top:1px solid #222;overflow:hidden;white-space:nowrap;padding:18px 0}
-.marquee .track{display:inline-flex;animation:marquee 28s linear infinite}
-.marquee .track>span{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em;padding-right:40px}
-@keyframes marquee{to{transform:translateX(-33.333%)}}
 
 .js [data-r]{opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),clip-path 1s cubic-bezier(.7,0,.2,1);transition-delay:var(--d,0s)}
 .js [data-r=scale]{transform:scale(.92) translateY(30px)}
@@ -329,7 +325,6 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
   .faq details[open] .a{animation:none}
   .ln>span,.intro{animation:none;transform:none;opacity:1}
   .js [data-r],.js [data-r] .ci{opacity:1!important;transform:none!important;clip-path:none!important;transition:none}
-  .marquee .track{animation:none}
   .progress{display:none}
   .steps div:before{transform:none!important}
 }
@@ -506,7 +501,6 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true"><div class="track" id="track"><span>Festpreis ab <b data-price="0" style="font-weight:inherit">500</b> €</span><span>•</span><span>Im Abo ab <b data-abo-min style="font-weight:inherit">39,99</b> € / Monat</span><span>•</span><span>Persönlicher Ansprechpartner</span><span>•</span><span>Perfekt auf dem Handy</span><span>•</span><span>Online in 1–2 Wochen</span><span>•</span></div></div>
 
   <section id="rechner" class="grey">
     <div class="wrap">
@@ -1059,11 +1053,9 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     all("[data-r]").forEach(function (el) { el.classList.add("in"); });
   }
 
-  // Fortschrittsbalken, Header-Schatten, Parallax im Startbereich, Laufband
+  // Fortschrittsbalken, Header-Schatten, Parallax im Startbereich
   var bar = $("progress"), head = $("top"), art = $("art"), heroText = document.querySelector(".hero .wrap > div"),
-      track = $("track"), ticking = false;
-  // Laufband dreifach füllen, damit es nahtlos endlos läuft
-  track.innerHTML = track.innerHTML + track.innerHTML + track.innerHTML;
+      ticking = false;
   function onScroll() {
     ticking = false;
     var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
@@ -1074,7 +1066,6 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
       heroText.style.transform = "translateY(" + (y * 0.12) + "px)";
       heroText.style.opacity = Math.max(1 - y / 700, 0.2);
     }
-    if (!calm) track.style.marginLeft = -((y * 0.3) % (track.scrollWidth / 3)) + "px";
   }
   // FAQ: immer nur eine Antwort offen
   all(".faq details").forEach(function (d) {
