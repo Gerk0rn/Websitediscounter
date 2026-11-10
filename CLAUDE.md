@@ -25,7 +25,7 @@ Zielgruppe: Unternehmen, Selbstständige und Vereine. Sprache der Website: Deuts
 | `admin/` | Backend unter `/wd/admin/`: einmalige Registrierung per Mail-Code, Login, Preise/Pixel-ID/Passwort ändern. |
 | `data/` | Vom Backend auf dem Server angelegt (Preise, Zugang, Einstellungen) – per `.gitignore` **nie im Repo**, damit Deploys nichts überschreiben. Dateien beginnen mit `<?php exit; ?>`, plus `.htaccess`-Sperre. |
 | `impressum.html`, `datenschutz.html` | Rechtstexte, eigenes Inline-CSS. |
-| `img/` | Logo (schwarz/weiß), Porträt, Referenz-Screenshots (800 px breit, JPEG). |
+| `img/` | Logo (schwarz/weiß), Porträt, Referenz-Screenshots (800 px breit, JPEG), `hero-website.jpg` (Startbereich, mit Picsart erzeugt, Graustufen 1000 px, Ränder auf reines Schwarz gezogen). |
 
 Neue externe Dateien mit Versions-Query einbinden (`consent.js?v=1`) und bei Änderung hochzählen.
 
