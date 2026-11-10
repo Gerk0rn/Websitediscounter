@@ -25,7 +25,7 @@ Zielgruppe: Unternehmen, Selbstständige und Vereine. Sprache der Website: Deuts
 | `admin/` | Backend unter `/wd/admin/`: einmalige Registrierung per Mail-Code, Login, Preise/Pixel-ID/Passwort ändern. |
 | `data/` | Vom Backend auf dem Server angelegt (Preise, Zugang, Einstellungen) – per `.gitignore` **nie im Repo**, damit Deploys nichts überschreiben. Dateien beginnen mit `<?php exit; ?>`, plus `.htaccess`-Sperre. |
 | `impressum.html`, `datenschutz.html` | Rechtstexte, eigenes Inline-CSS. |
-| `img/` | Logo (schwarz/weiß), Porträt, Referenz-Screenshots (800 px breit, JPEG), `hero-website.jpg` (Startbereich, mit Picsart erzeugt, Graustufen 1000 px, Ränder auf reines Schwarz gezogen). |
+| `img/` | Logo (schwarz/weiß), Porträt, Referenz-Screenshots (800 px breit, JPEG), `hero/f01–f37.jpg` (Laptop klappt auf: Einzelbilder aus einem Picsart-Video, Graustufen 800×680, Ränder reines Schwarz). |
 
 Neue externe Dateien mit Versions-Query einbinden (`consent.js?v=1`) und bei Änderung hochzählen.
 
@@ -33,7 +33,7 @@ Neue externe Dateien mit Versions-Query einbinden (`consent.js?v=1`) und bei Än
 
 Gerken-Medien-Stil: **nur Schwarz, Weiß, Grau** (`#000`, `#fff`, `#f2f2f2`, Text-Grau `#555`),
 System-Grotesk, keine externen Schriften/Ressourcen, keine Rundungen, 2px-Linien, eckige Buttons mit
-invertierendem Hover. Hero, Designbeispiele-Sektion, Kontakt und Footer schwarz. Motion über `data-r`
+invertierendem Hover. Hero, Designbeispiele-Sektion, Kontakt und Footer schwarz. Startbereich: Laptop klappt beim Scrollen auf (Canvas zeichnet `img/hero/f01–f37`; ab 901 px bleibt der Hero dafür stehen – `.hero-track`/`.hero-space` 70vh; mobil öffnet er beim Hereinscrollen; ohne JS/bei reduzierter Bewegung steht das offene Bild `f37`). Motion über `data-r`
 (Reveal), `data-r="clip"` (Überschriften), `data-stagger`, `data-to` (Hochzählen); immer
 `prefers-reduced-motion` und No-JS berücksichtigen. Mobil (390 px) ohne horizontales Scrollen testen.
 

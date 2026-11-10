@@ -40,7 +40,18 @@ header .btn{padding:10px 18px;font-size:.92rem}
 .hero h1{font-size:clamp(2.6rem,7vw,5.2rem)}
 .hero p{font-size:1.2rem;color:#ccc;max-width:30em;margin-bottom:32px}
 .art{margin:0;position:relative}
-.art img{width:100%;height:auto;display:block;-webkit-mask-image:radial-gradient(closest-side,#000 96%,transparent);mask-image:radial-gradient(closest-side,#000 96%,transparent)}
+.art img,.art canvas{width:100%;height:auto;display:block}
+.art canvas{position:absolute;inset:0}
+.art.live img{visibility:hidden}
+.hero-space{display:none;background:#000}
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){
+  .js .hero-track{background:#000}
+  .js .hero-track .hero{position:sticky;top:70px}
+  .js .hero-space{display:block;height:70vh}
+}
+@media(min-width:901px){
+  .art{margin:0 -48px 0 -40px}
+}
 @keyframes spin{to{transform:rotate(360deg)}}
 .prices{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap}
 .prices div{border-top:2px solid #fff;padding-top:8px;min-width:120px}
@@ -391,6 +402,7 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
 </header>
 
 <main>
+  <div class="hero-track">
   <section class="hero">
     <div class="wrap">
       <div>
@@ -405,10 +417,12 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
         </div>
       </div>
       <figure class="art" aria-hidden="true" id="art">
-        <img class="intro i5" src="img/hero-website.jpg" alt="" width="1000" height="1000" fetchpriority="high">
+        <img class="intro i5" src="img/hero/f37.jpg" alt="" width="800" height="680" fetchpriority="high">
       </figure>
     </div>
   </section>
+  <div class="hero-space" id="heroSpace"></div>
+  </div>
 
 
   <section id="rechner" class="grey">
@@ -848,11 +862,45 @@ header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.08)}
     var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
     head.classList.toggle("scrolled", y > 10);
-    if (!calm && y < innerHeight * 1.2) {
-      art.style.transform = "translateY(" + (y * 0.25) + "px) rotate(" + (y * 0.01) + "deg)";
-      heroText.style.transform = "translateY(" + (y * 0.12) + "px)";
-      heroText.style.opacity = Math.max(1 - y / 700, 0.2);
+    var pin = $("heroSpace").offsetHeight; // > 0: Hero bleibt stehen, solange der Laptop aufklappt
+    if (!calm) {
+      var r = art.getBoundingClientRect();
+      seqGoal = pin ? Math.min(y / pin, 1)
+        : Math.min(Math.max((innerHeight - r.top - r.height * 0.35) / (innerHeight * 0.5), 0), 1);
+      seqRun();
     }
+    var yy = Math.max(y - pin, 0);
+    if (!calm && yy < innerHeight * 1.2) {
+      art.style.transform = pin ? "translateY(" + (yy * 0.25) + "px)" : "";
+      heroText.style.transform = "translateY(" + (yy * 0.12) + "px)";
+      heroText.style.opacity = Math.max(1 - yy / 700, 0.2);
+    }
+  }
+
+  // ===== Laptop klappt beim Scrollen auf: Einzelbilder img/hero/f01–f37 auf einer Leinwand =====
+  var SEQ = 37, SEQ_START = 0.3, seqImgs = [], seqGoal = 0, seqPos = 0, seqIntro = 0, seqBusy = false, seqShown = -1, seqCtx = null;
+  function seqDraw() {
+    seqBusy = false;
+    var want = Math.min(seqGoal, 1), base = $("heroSpace").offsetHeight ? SEQ_START * seqIntro : 0.1;
+    var goal = base + (1 - base) * want;
+    seqPos += (goal - seqPos) * 0.18;
+    if (Math.abs(goal - seqPos) < 0.002) seqPos = goal; else seqRun();
+    var i = Math.round(seqPos * (SEQ - 1)), n = i;
+    while (n < SEQ && !(seqImgs[n] && seqImgs[n].ok)) n++; // nächstes schon geladenes Bild
+    if (n < SEQ && n !== seqShown && seqCtx) { seqCtx.drawImage(seqImgs[n], 0, 0); seqShown = n; art.classList.add("live"); }
+  }
+  function seqRun() { if (!seqBusy && seqCtx) { seqBusy = true; requestAnimationFrame(seqDraw); } }
+  if (!calm) {
+    var cv = document.createElement("canvas");
+    cv.width = 800; cv.height = 680;
+    seqCtx = cv.getContext("2d");
+    art.appendChild(cv);
+    for (var k = SEQ - 1; k >= 0; k--) (function (k) {
+      var im = new Image();
+      im.onload = function () { im.ok = true; if (k === SEQ - 1) { seqIntro = 1; } seqShown = -1; seqRun(); };
+      im.src = "img/hero/f" + (k < 9 ? "0" : "") + (k + 1) + ".jpg";
+      seqImgs[k] = im;
+    })(k);
   }
   // FAQ: immer nur eine Antwort offen
   all(".faq details").forEach(function (d) {
