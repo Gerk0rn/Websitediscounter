@@ -5,14 +5,10 @@
 
 const ADMIN_MAIL = 'info@grkn.net';
 const DATA_DIR = __DIR__ . '/../data';
-const DEFAULT_PRICES = ['start' => 500, 'business' => 1200, 'premium' => 1650];
+const DEFAULT_PRICES = ['start' => 499, 'business' => 999, 'premium' => 1499];
+// Gespeicherte Preise gelten nur mit diesem Stand – ältere (aus der Abo-Zeit) weichen den Standardpreisen
+const PRICES_VERSION = 2;
 const PACKAGES = ['start' => 'Start', 'business' => 'Business', 'premium' => 'Premium'];
-// Abo je Paket: monthly/setup in Cent, term in Monaten, discount in Prozent bei jährlicher Zahlung
-const DEFAULT_ABO = [
-    'start'    => ['monthly' => 3999,  'setup' => 9999,  'term' => 12, 'discount' => 20],
-    'business' => ['monthly' => 8999,  'setup' => 12999, 'term' => 12, 'discount' => 20],
-    'premium'  => ['monthly' => 10999, 'setup' => 15999, 'term' => 12, 'discount' => 20],
-];
 const MAX_FAILS = 5;            // Fehlversuche ...
 const LOCK_SECONDS = 15 * 60;   // ... innerhalb dieser Zeit sperren den Login
 const CODE_SECONDS = 30 * 60;   // so lange gilt der Einrichtungscode
@@ -59,43 +55,15 @@ function data_delete($name) {
 function get_prices() {
     $saved = data_read('prices') ?? [];
     $prices = DEFAULT_PRICES;
+    if (($saved['v'] ?? 1) !== PRICES_VERSION) {
+        return $prices;
+    }
     foreach ($prices as $key => $value) {
         if (isset($saved[$key]) && is_int($saved[$key])) {
             $prices[$key] = $saved[$key];
         }
     }
     return $prices;
-}
-
-function get_abo() {
-    $saved = (data_read('prices') ?? [])['abo'] ?? [];
-    $abo = DEFAULT_ABO;
-    foreach ($abo as $key => $fields) {
-        foreach ($fields as $field => $value) {
-            if (isset($saved[$key][$field]) && is_int($saved[$key][$field])) {
-                $abo[$key][$field] = $saved[$key][$field];
-            }
-        }
-    }
-    return $abo;
-}
-
-// Jährlicher Abo-Preis in Cent: 12 Monatsbeiträge abzüglich Rabatt
-function abo_yearly(array $a) {
-    return (int) round($a['monthly'] * 12 * (100 - $a['discount']) / 100);
-}
-
-// "39,99" / "39.99" / "40" → 3999 Cent, sonst null
-function parse_cents($raw) {
-    $raw = str_replace([' ', '€'], '', trim((string) $raw));
-    if (!preg_match('/^(\d{1,6})(?:[.,](\d{1,2}))?$/', $raw, $m)) {
-        return null;
-    }
-    return (int) $m[1] * 100 + (int) str_pad($m[2] ?? '0', 2, '0');
-}
-
-function money($cents) {
-    return number_format($cents / 100, 2, ',', '.');
 }
 
 function get_pixel_id() {
@@ -268,13 +236,6 @@ input:focus{outline:none;border-color:#000}
 .pkg{border:2px solid #000;padding:16px 16px 4px;margin:0;min-width:0}
 .pkg legend{font-weight:800;font-size:1.1rem;padding:0 6px}
 .pkg label{margin-bottom:12px}
-.pkg .sub{margin:14px 0 8px;padding-top:12px;border-top:1px solid #ddd;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.pkg .two{display:block}
-.pkg .calc{font-size:.82rem;color:#555;border-top:1px solid #ddd;padding-top:10px;margin:0 0 12px}
-.euro.small input{font-size:1.1rem}
-.unit{position:relative;display:block}
-.unit input{padding-right:46px}
-.unit:after{content:attr(data-unit);position:absolute;right:12px;bottom:14px;font-weight:700;color:#555}
 .flash{padding:14px 18px;font-weight:700;margin:0 0 24px;border:2px solid #000}
 .flash.ok{background:#000;color:#fff}
 .flash.err{background:#fff;color:#b42318;border-color:#b42318}

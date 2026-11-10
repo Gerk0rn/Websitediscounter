@@ -4,9 +4,9 @@ Landingpage mit Preisrechner für Gerken Medien. Kunden beantworten 3 kurze Frag
 
 | Paket    | Preis   |
 |----------|---------|
-| Start    | 500 €   |
-| Business | 1.200 € |
-| Premium  | 1.650 € |
+| Start    | 499 €   |
+| Business | 999 €   |
+| Premium  | 1.499 € |
 
 ## Dateien
 

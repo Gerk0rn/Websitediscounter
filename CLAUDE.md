@@ -21,8 +21,8 @@ Zielgruppe: Unternehmen, Selbstständige und Vereine. Sprache der Website: Deuts
 | `consent.js` | Cookie-Banner + Meta-Pixel (lädt nur nach Einwilligung, meldet `PageView` und `Lead`). |
 | `whatsapp.js` | Schwebender WhatsApp-Button (`wa.me/4915221950840`), reiner Link. |
 | `send.php` | Anfrageformular → Mail an `info@grkn.net` (PHP `mail()`, Honeypot `website`). |
-| `prices.php` | Liefert Preise, Abo-Konditionen und Pixel-ID als JSON an die Website. |
-| `admin/` | Backend unter `/wd/admin/`: einmalige Registrierung per Mail-Code, Login, Preise/Abo/Pixel-ID/Passwort ändern. |
+| `prices.php` | Liefert Preise und Pixel-ID als JSON an die Website. |
+| `admin/` | Backend unter `/wd/admin/`: einmalige Registrierung per Mail-Code, Login, Preise/Pixel-ID/Passwort ändern. |
 | `data/` | Vom Backend auf dem Server angelegt (Preise, Zugang, Einstellungen) – per `.gitignore` **nie im Repo**, damit Deploys nichts überschreiben. Dateien beginnen mit `<?php exit; ?>`, plus `.htaccess`-Sperre. |
 | `impressum.html`, `datenschutz.html` | Rechtstexte, eigenes Inline-CSS. |
 | `img/` | Logo (schwarz/weiß), Porträt, Referenz-Screenshots (800 px breit, JPEG). |
@@ -37,15 +37,13 @@ invertierendem Hover. Hero, Designbeispiele-Sektion, Kontakt und Footer schwarz.
 (Reveal), `data-r="clip"` (Überschriften), `data-stagger`, `data-to` (Hochzählen); immer
 `prefers-reduced-motion` und No-JS berücksichtigen. Mobil (390 px) ohne horizontales Scrollen testen.
 
-## Preise und Abo
+## Preise
 
-- Einmalkauf (Standard): Start 500 €, Business 1.200 €, Premium 1.650 € – im Admin änderbar.
-- Abo je Paket (im Admin änderbar, intern in **Cent**): monatlich 39,99 / 89,99 / 109,99 €,
-  Einrichtung 99,99 / 129,99 / 159,99 €, Mindestlaufzeit 12 Monate, jährlich −20 % ohne Einrichtung.
-  Jahrespreis = 12 × Monatsbeitrag × (1 − Rabatt).
-- Abo-Bedingungen (fest im Text): Pflege + bis zu 2 kleinere Änderungen/Monat inklusive, größere nach
-  Aufwand, Hosting nicht enthalten, nach 12 Monaten monatliche Verlängerung, Kündigungsfrist 1 Monat,
-  nach Ende des Abos keine Änderungen mehr.
+- Nur Einmalkauf zum Festpreis: Start 499 €, Business 999 €, Premium 1.499 € – im Admin änderbar.
+- **Kein Abo-Modell mehr** (monatlich/jährlich wurde auf Wunsch des Kunden entfernt) – nicht wieder einbauen.
+- Gespeicherte Admin-Preise gelten nur mit `"v": PRICES_VERSION` (`admin/lib.php`); ältere Dateien in
+  `data/prices.php` werden ignoriert, dann gelten die Standardpreise. Bei neuen Standardpreisen, die
+  sofort live gelten sollen, `PRICES_VERSION` hochzählen.
 - Preishinweis: **„Alle Preise sind Endpreise – es kommt keine Mehrwertsteuer hinzu.“**
   Nicht „netto“, nicht „inkl. MwSt.“, kein „§ 19 UStG“ auf der Website (Kunde will das nicht).
 - Rechner: Punkte aus 3 Fragen → bis 2 Start, bis 6 Business, ab 7 Premium.
