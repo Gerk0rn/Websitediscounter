@@ -38,3 +38,6 @@ jobs:
             .git/**
             .github/**
             CLAUDE.md
+            .agents/**
+            .claude/**
+            skills-lock.json
