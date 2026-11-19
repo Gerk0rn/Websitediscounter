@@ -11,7 +11,7 @@ Zielgruppe: Unternehmen, Selbstständige und Vereine. Sprache der Website: Deuts
 - Entwickelt wird auf dem Arbeits-Branch; auf `main` erst, wenn der Nutzer „online stellen“ sagt.
   Will er „erst einen Entwurf sehen“: nur auf den Arbeits-Branch pushen und Screenshots zeigen.
 - Nach jedem Push auf `main` den Deploy-Run prüfen (GitHub Actions) und das Ergebnis melden.
-- Vom Upload ausgeschlossen: `.git/`, `.github/`, `CLAUDE.md`.
+- Vom Upload ausgeschlossen: `.git/`, `.github/`, `CLAUDE.md`, `.agents/`, `.claude/`, `skills-lock.json` (Skill `design-taste-frontend` – nur als Ideengeber, seine „House rules“ gelten hier nicht).
 
 ## Aufbau
 
