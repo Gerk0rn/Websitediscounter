@@ -37,4 +37,6 @@ jobs:
             **/.github/**
             .git/**
             .github/**
+            **/.claude/**
+            .claude/**
             CLAUDE.md
