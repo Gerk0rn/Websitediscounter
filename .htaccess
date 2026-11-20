@@ -12,6 +12,11 @@ ServerSignature Off
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+  # Umzug: Der Website Discounter ist jetzt Teil von www.der-medienfreund.de
+  RewriteRule ^(index\.html)?$ https://www.der-medienfreund.de/website-erstellen.html [R=301,L]
+  RewriteRule ^impressum\.html$ https://www.der-medienfreund.de/impressum.html [R=301,L]
+  RewriteRule ^datenschutz\.html$ https://www.der-medienfreund.de/datenschutz.html [R=301,L]
+
   # Versteckte Dateien und Ordner (.git, .env, …) sperren – außer .well-known
   RewriteRule (^|/)\.(?!well-known/) - [F,L]
 </IfModule>
